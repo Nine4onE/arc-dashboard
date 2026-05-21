@@ -12,7 +12,7 @@
 <style>
 :root {
   --bg: #0a0a0a; --surface: #111; --border: #1e1e1e; --text: #f0f0f0;
-  --muted: #555; --dim: #2a2a2a; --accent: #378ADD;
+  --muted: #888; --dim: #3a3a3a; --accent: #378ADD;
   --work: #378ADD; --gym: #639922; --admin: #BA7517; --rest: #7F77DD;
   --venture: #D4537E; --garden: #3B6D11; --neutral: #444;
   --safe-top: env(safe-area-inset-top,0px); --safe-bottom: env(safe-area-inset-bottom,0px);
@@ -254,8 +254,6 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
 </div>
 <div class="tabs" style="margin-top:-4px;">
   <button class="tab" onclick="showTab('weather',this)">Weather</button>
-  <button class="tab" onclick="showTab('tech',this)">Tech</button>
-  <button class="tab" onclick="showTab('health',this)">Health</button>
   <button class="tab" onclick="showTab('venture',this)">Venture</button>
   <button class="tab" onclick="showTab('cre',this)">CRE</button>
   <button class="tab" onclick="showTab('lfro',this)">1908</button>
@@ -695,7 +693,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
         <div id="cre-mod-question" style="font-size:13px;color:var(--text);line-height:1.5;margin-bottom:10px;"></div>
         <div id="cre-mod-answers" style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;"></div>
         <div id="cre-mod-result" style="display:none;border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:12px;line-height:1.5;"></div>
-        <button id="cre-mod-complete-btn" onclick="completeModule()" style="display:none;width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#111;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;">Mark Complete ✓</button>
+        <button id="cre-mod-complete-btn" onclick="completeModule()" style="display:none;width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#888;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;">Mark Complete ✓</button>
       </div>
     </div>
   </div>
@@ -720,7 +718,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
         <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:3px;">Rate (%)</div><input id="da-rate" type="number" placeholder="7.25" style="width:100%;background:#0a0a0a;border:1px solid #3a2e10;border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);outline:none;caret-color:#D4A853;"/></div>
         <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:3px;">Amort (yrs)</div><input id="da-amort" type="number" placeholder="25" style="width:100%;background:#0a0a0a;border:1px solid #3a2e10;border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);outline:none;caret-color:#D4A853;"/></div>
       </div>
-      <button onclick="runDealAnalyzer()" style="width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#111;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;margin-bottom:10px;">Analyze Deal</button>
+      <button onclick="runDealAnalyzer()" style="width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#888;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;margin-bottom:10px;">Analyze Deal</button>
       <div id="da-results" style="display:none;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;" id="da-grid"></div>
         <div id="da-verdict" style="border-radius:8px;padding:10px 12px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.6;"></div>
@@ -748,7 +746,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
         <button class="cr-class-btn" onclick="selectCrClass('B',this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:#1a1307;color:#D4A853;cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">Class B</button>
         <button class="cr-class-btn" onclick="selectCrClass('C',this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:none;color:var(--muted);cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">Class C</button>
       </div>
-      <button onclick="runCompsAnalysis()" style="width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#111;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;">Run Comps</button>
+      <button onclick="runCompsAnalysis()" style="width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#888;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;">Run Comps</button>
     </div>
     <div id="cr-subject-out" style="display:none;margin-bottom:10px;">
       <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Indicated Value Range</div>
@@ -1878,96 +1876,155 @@ function growDayNum(startStr) {
   return diff > 0 ? diff : 1;
 }
 
-function renderGrowTodayTasks(tray, dayNum) {
+function renderGrowTodayTasks(tray, dayNum, container) {
   const tmpl = GROW_TEMPLATES[tray.template] || GROW_TEMPLATES.sprouts;
   const tasks = tmpl.dailyTasks[dayNum] || [];
-  if (!tasks.length) return '<div style="font-family:DM Mono,monospace;font-size:10px;color:var(--muted);">No tasks scheduled for today</div>';
-
-  return tasks.map((task, idx) => {
+  container.innerHTML = '';
+  if (!tasks.length) {
+    container.innerHTML = '<div style="font-family:DM Mono,monospace;font-size:10px;color:var(--muted);">No tasks today</div>';
+    return;
+  }
+  tasks.forEach(function(task, idx) {
     const key = 'grow_task_' + tray.id + '_' + todayKey() + '_' + idx;
     const checked = localStorage.getItem(key) === '1';
-    return `<div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;cursor:pointer;opacity:${checked ? '0.4' : '1'};" onclick="toggleGrowTask('${key}', ${tray.id})">
-      <div style="width:16px;height:16px;border-radius:50%;border:1px solid ${checked ? '#639922' : '#2a4a2a'};background:${checked ? '#1a3a1a' : 'none'};display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
-        ${checked ? '<span style="font-size:9px;color:#639922;">✓</span>' : ''}
-      </div>
-      <div style="flex:1;">
-        <div style="font-family:'DM Mono',monospace;font-size:11px;color:${checked ? '#555' : '#f0f0f0'};font-weight:500;${checked ? 'text-decoration:line-through;' : ''}">${task.label}</div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:${checked ? '#333' : '#639922'};">${task.desc}</div>
-      </div>
-    </div>`;
-  }).join('');
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;cursor:pointer;opacity:' + (checked ? '0.4' : '1') + ';transition:opacity 0.2s;';
+    row.onclick = function() {
+      localStorage.setItem(key, localStorage.getItem(key) === '1' ? '0' : '1');
+      renderGrowTrays();
+    };
+    const circle = document.createElement('div');
+    circle.style.cssText = 'width:16px;height:16px;border-radius:50%;border:1px solid ' + (checked ? '#639922' : '#2a4a2a') + ';background:' + (checked ? '#1a3a1a' : 'none') + ';display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;';
+    if (checked) circle.innerHTML = '<span style="font-size:9px;color:#639922;">✓</span>';
+    const text = document.createElement('div');
+    text.style.cssText = 'flex:1;';
+    const lbl = document.createElement('div');
+    lbl.style.cssText = 'font-family:DM Mono,monospace;font-size:11px;font-weight:500;color:' + (checked ? '#666' : '#f0f0f0') + ';' + (checked ? 'text-decoration:line-through;' : '');
+    lbl.textContent = task.label;
+    const desc = document.createElement('div');
+    desc.style.cssText = 'font-family:DM Mono,monospace;font-size:10px;color:' + (checked ? '#555' : '#97C459') + ';margin-top:2px;';
+    desc.textContent = task.desc;
+    text.appendChild(lbl);
+    text.appendChild(desc);
+    row.appendChild(circle);
+    row.appendChild(text);
+    container.appendChild(row);
+  });
 }
 
-function toggleGrowTask(key, trayId) {
+function toggleGrowTask(key) {
   const cur = localStorage.getItem(key) === '1';
   localStorage.setItem(key, cur ? '0' : '1');
   renderGrowTrays();
 }
 
 function renderGrowTrays() {
-  const trays = getGrowTrays();
-  const list  = document.getElementById('grow-tray-list');
-  const empty = document.getElementById('grow-empty');
+  var trays = getGrowTrays();
+  var list  = document.getElementById('grow-tray-list');
+  var empty = document.getElementById('grow-empty');
   if (!list) return;
   list.innerHTML = '';
   if (!trays.length) { if (empty) empty.style.display = 'block'; return; }
   if (empty) empty.style.display = 'none';
 
-  const today = todayKey();
+  var today = todayKey();
 
-  trays.forEach(tray => {
-    const tmpl      = GROW_TEMPLATES[tray.template] || GROW_TEMPLATES.sprouts;
-    const dayNum    = growDayNum(tray.start);
-    const isHarvested = today > tray.harvest;
-    const isToday   = today === tray.harvest;
+  trays.forEach(function(tray) {
+    var tmpl       = GROW_TEMPLATES[tray.template] || GROW_TEMPLATES.sprouts;
+    var dayNum     = growDayNum(tray.start);
+    var isHarvested = tray.harvest && today > tray.harvest;
+    var isHarvestDay = tray.harvest && today === tray.harvest;
 
-    // Status badge
-    let badge = '';
-    if (isHarvested) badge = '<span style="color:#639922;font-size:9px;margin-left:6px;">✓ harvested</span>';
-    else if (isToday) badge = '<span style="color:#97C459;font-size:9px;margin-left:6px;">🎉 harvest today</span>';
-
-    // Milestone cards
-    const milestoneCards = tmpl.milestones.map(ms => {
-      const msDate = (() => {
-        const [y,m,d] = tray.start.split('-').map(Number);
-        const dt = new Date(y, m-1, d + ms.day - 1);
-        return dt.getFullYear() + '-' + String(dt.getMonth()+1).padStart(2,'0') + '-' + String(dt.getDate()).padStart(2,'0');
-      })();
-      const msFmt = new Date(msDate + 'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
-      const isPast = today > msDate;
-      const isCur  = today === msDate;
-      const cardStyle = ms.harvest && isCur  ? 'border-color:#97C459;background:#0d1a09;'
-                      : ms.harvest && isPast ? 'border-color:#639922;background:#0d1a09;opacity:0.6;'
-                      : isCur ? 'border-color:#639922;background:#0a1a09;'
-                      : isPast ? 'opacity:0.4;' : '';
-      const labelColor = (ms.harvest && (isCur || isPast)) ? 'color:#97C459;' : isCur ? 'color:#97C459;' : '';
-      return `<div class="garden-card" style="${cardStyle}">
-        <div class="garden-label" style="${labelColor}">Day ${ms.day} — ${ms.label}</div>
-        <div class="garden-value" style="font-size:11px;">${msFmt}</div>
-        <div class="garden-sub">${ms.desc}</div>
-      </div>`;
-    }).join('');
-
-    // Today's task strip
-    const taskStrip = renderGrowTodayTasks(tray, dayNum);
-
-    const sec = document.createElement('div');
+    // Section wrapper
+    var sec = document.createElement('div');
     sec.className = 'section';
     if (isHarvested) sec.style.opacity = '0.55';
-    sec.innerHTML = `
-      <div class="section-label" style="justify-content:space-between;align-items:center;">
-        <span>🌱 ${tray.name}${badge}</span>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:none;letter-spacing:0;">Day ${dayNum}</span>
-          <button onclick="deleteGrowTray(${tray.id})" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:none;border:1px solid var(--border);border-radius:6px;padding:2px 8px;cursor:pointer;-webkit-appearance:none;">✕</button>
-        </div>
-      </div>
-      ${!isHarvested ? `
-      <div style="background:#0d1a09;border:1px solid #1a3a1a;border-radius:10px;padding:10px 13px;margin-bottom:8px;">
-        <div style="font-family:'DM Mono',monospace;font-size:9px;color:#97C459;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Today · Day ${dayNum}</div>
-        ${taskStrip}
-      </div>` : ''}
-      <div class="garden-grid">${milestoneCards}</div>`;
+
+    // Header
+    var hdr = document.createElement('div');
+    hdr.className = 'section-label';
+    hdr.style.cssText = 'justify-content:space-between;align-items:center;';
+    var titleSpan = document.createElement('span');
+    titleSpan.textContent = '🌱 ' + tray.name;
+    if (isHarvested) {
+      var hBadge = document.createElement('span');
+      hBadge.style.cssText = 'color:#639922;font-size:9px;margin-left:6px;';
+      hBadge.textContent = '✓ harvested';
+      titleSpan.appendChild(hBadge);
+    } else if (isHarvestDay) {
+      var hBadge = document.createElement('span');
+      hBadge.style.cssText = 'color:#97C459;font-size:9px;margin-left:6px;';
+      hBadge.textContent = '🎉 harvest today';
+      titleSpan.appendChild(hBadge);
+    }
+    var meta = document.createElement('div');
+    meta.style.cssText = 'display:flex;align-items:center;gap:10px;';
+    var dayLabel = document.createElement('span');
+    dayLabel.style.cssText = 'font-family:DM Mono,monospace;font-size:9px;color:var(--muted);text-transform:none;letter-spacing:0;';
+    dayLabel.textContent = 'Day ' + dayNum;
+    var delBtn = document.createElement('button');
+    delBtn.textContent = '✕';
+    delBtn.style.cssText = 'font-family:DM Mono,monospace;font-size:10px;color:var(--muted);background:none;border:1px solid var(--border);border-radius:6px;padding:2px 8px;cursor:pointer;-webkit-appearance:none;';
+    delBtn.onclick = (function(id){ return function(){ deleteGrowTray(id); }; })(tray.id);
+    meta.appendChild(dayLabel);
+    meta.appendChild(delBtn);
+    hdr.appendChild(titleSpan);
+    hdr.appendChild(meta);
+    sec.appendChild(hdr);
+
+    // Today task strip — only if not harvested
+    if (!isHarvested) {
+      var strip = document.createElement('div');
+      strip.style.cssText = 'background:#0d1a09;border:1px solid #1a3a1a;border-radius:10px;padding:10px 13px;margin-bottom:8px;';
+      var stripHdr = document.createElement('div');
+      stripHdr.style.cssText = 'font-family:DM Mono,monospace;font-size:9px;color:#97C459;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;';
+      stripHdr.textContent = 'Today · Day ' + dayNum;
+      var taskContainer = document.createElement('div');
+      renderGrowTodayTasks(tray, dayNum, taskContainer);
+      strip.appendChild(stripHdr);
+      strip.appendChild(taskContainer);
+      sec.appendChild(strip);
+    }
+
+    // Milestone cards
+    var grid = document.createElement('div');
+    grid.className = 'garden-grid';
+    tmpl.milestones.forEach(function(ms) {
+      var parts = tray.start.split('-').map(Number);
+      var dt = new Date(parts[0], parts[1]-1, parts[2] + ms.day - 1);
+      var msDate = dt.getFullYear() + '-' + String(dt.getMonth()+1).padStart(2,'0') + '-' + String(dt.getDate()).padStart(2,'0');
+      var msFmt = new Date(msDate + 'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
+      var isPast = today > msDate;
+      var isCur  = today === msDate;
+
+      var card = document.createElement('div');
+      card.className = 'garden-card';
+      if (ms.harvest && isCur)       { card.style.borderColor = '#97C459'; card.style.background = '#0d1a09'; }
+      else if (ms.harvest && isPast) { card.style.borderColor = '#639922'; card.style.background = '#0d1a09'; card.style.opacity = '0.6'; }
+      else if (isCur)                { card.style.borderColor = '#639922'; card.style.background = '#0a1a09'; }
+      else if (isPast)               { card.style.opacity = '0.4'; }
+
+      var cardLbl = document.createElement('div');
+      cardLbl.className = 'garden-label';
+      if (ms.harvest && (isCur || isPast)) cardLbl.style.color = '#97C459';
+      else if (isCur) cardLbl.style.color = '#97C459';
+      cardLbl.textContent = 'Day ' + ms.day + ' — ' + ms.label;
+
+      var cardVal = document.createElement('div');
+      cardVal.className = 'garden-value';
+      cardVal.style.fontSize = '11px';
+      cardVal.textContent = msFmt;
+
+      var cardSub = document.createElement('div');
+      cardSub.className = 'garden-sub';
+      cardSub.textContent = ms.desc;
+
+      card.appendChild(cardLbl);
+      card.appendChild(cardVal);
+      card.appendChild(cardSub);
+      grid.appendChild(card);
+    });
+    sec.appendChild(grid);
     list.appendChild(sec);
   });
 }
@@ -1985,7 +2042,7 @@ let syncTimer=null;
 function setSyncStatus(state){
   const dot=document.getElementById('sync-dot'),label=document.getElementById('sync-label');
   if(!dot||!label)return;
-  const map={idle:{color:'#555',text:'sync'},syncing:{color:'#BA7517',text:'syncing'},ok:{color:'#639922',text:'synced'},error:{color:'#D4537E',text:'offline'},setup:{color:'#9B59B6',text:'setup'}};
+  const map={idle:{color:'#999',text:'sync'},syncing:{color:'#BA7517',text:'syncing'},ok:{color:'#639922',text:'synced'},error:{color:'#D4537E',text:'offline'},setup:{color:'#9B59B6',text:'setup'}};
   const s=map[state]||map.idle;
   dot.style.background=s.color;label.textContent=s.text;label.style.color=s.color;
   const setupBtn=document.getElementById('sync-setup-btn');
@@ -3258,7 +3315,7 @@ function renderComps(comps){
 function loadComps(){renderComps(JSON.parse(localStorage.getItem('cre_comps')||'[]'));}
 
 // ── CRE: Contact CRM ─────────────────────────────────────────────────────
-const CRM_STYLES={broker:{color:'#D4A853',bg:'#1a1307',border:'#3a2e10'},owner:{color:'#378ADD',bg:'#0d1a2a',border:'#1a2e40'},lender:{color:'#639922',bg:'#111a09',border:'#1a3a10'},attorney:{color:'#9B59B6',bg:'#1a0d2e',border:'#3a1a5a'},other:{color:'#555',bg:'#111',border:'#2a2a2a'}};
+const CRM_STYLES={broker:{color:'#D4A853',bg:'#1a1307',border:'#3a2e10'},owner:{color:'#378ADD',bg:'#0d1a2a',border:'#1a2e40'},lender:{color:'#639922',bg:'#111a09',border:'#1a3a10'},attorney:{color:'#9B59B6',bg:'#1a0d2e',border:'#3a1a5a'},other:{color:'#999',bg:'#111',border:'#2a2a2a'}};
 let activeCrmRole='broker';
 function selectCrmRole(r,btn){activeCrmRole=r;document.querySelectorAll('.crm-role-btn').forEach(b=>{b.style.background='none';b.style.color='var(--muted)';});if(btn){const s=CRM_STYLES[r];btn.style.background=s.bg;btn.style.color=s.color;}}
 function addCrmContact(){
@@ -3427,7 +3484,7 @@ function lfroCalc() {
     +'</div>'
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">'
     +'<div style="background:#0d0d0d;border:1px solid var(--border);border-radius:9px;padding:10px;text-align:center;">'
-    +'<div style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:4px;">P&R Fee <span style="color:#444;text-transform:none;">('+prLabel+')</span></div>'
+    +'<div style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:4px;">P&R Fee <span style="color:#888;text-transform:none;">('+prLabel+')</span></div>'
     +'<div style="font-family:\'DM Mono\',monospace;font-size:14px;color:#D4537E;">-'+fmt(prFee)+'</div></div>'
     +'<div style="background:#111a09;border:1px solid #1a3a10;border-radius:9px;padding:10px;text-align:center;">'
     +'<div style="font-family:\'DM Mono\',monospace;font-size:9px;color:#97C459;text-transform:uppercase;margin-bottom:4px;">Net to You</div>'
