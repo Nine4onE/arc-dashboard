@@ -2100,7 +2100,7 @@ function syncPush(){
   },1500);
 }
 
-async function syncPull(){
+async function syncPull(forceApply){
   if(!JSONBIN_BIN_ID||!JSONBIN_API_KEY){setSyncStatus('setup');return;}
   setSyncStatus('syncing');
   try{
@@ -2109,7 +2109,11 @@ async function syncPull(){
     const json=await res.json();const remote=json.record;
     const localUpdated=new Date(JSON.parse(localStorage.getItem('arc_last_updated')||'"2000-01-01"'));
     const remoteUpdated=remote._updated?new Date(remote._updated):new Date('2000-01-01');
-    if(remoteUpdated>localUpdated){applyRemoteData(remote);localStorage.setItem('arc_last_updated',JSON.stringify(remote._updated));loadHabits();loadMITs();loadTasks();loadWater();loadReview();}
+    if(forceApply||remoteUpdated>localUpdated){
+      applyRemoteData(remote);
+      localStorage.setItem('arc_last_updated',JSON.stringify(remote._updated||new Date().toISOString()));
+      loadHabits();loadMITs();loadTasks();loadWater();loadReview();
+    }
     setSyncStatus('ok');setTimeout(()=>setSyncStatus('idle'),3000);
   }catch(e){setSyncStatus('error');}
 }
@@ -3816,7 +3820,7 @@ pomoDraw();
 fetchWeather();setInterval(fetchWeather,600000);
 loadGrowTab();
 initAlarms();updateAlarmBtn();
-syncPull();
+syncPull(true);
 setInterval(syncPull,5*60*1000);
 </script>
 </body>
