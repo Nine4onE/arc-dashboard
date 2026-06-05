@@ -12,7 +12,7 @@
 <style>
 :root {
   --bg: #0a0a0a; --surface: #111; --border: #1e1e1e; --text: #f0f0f0;
-  --muted: #555; --dim: #2a2a2a; --accent: #378ADD;
+  --muted: #aaa; --dim: #444; --accent: #378ADD;
   --work: #378ADD; --gym: #639922; --admin: #BA7517; --rest: #7F77DD;
   --venture: #D4537E; --garden: #3B6D11; --neutral: #444;
   --safe-top: env(safe-area-inset-top,0px); --safe-bottom: env(safe-area-inset-bottom,0px);
@@ -78,7 +78,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
 
 /* CRE TAB */
 .cre-accent { color: #D4A853; }
-.cre-section-hd { font-size: 10px; color: #D4A853; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'DM Mono',monospace; margin-bottom: 7px; display: flex; justify-content: space-between; align-items: center; }
+.cre-section-hd { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-family: 'DM Mono',monospace; margin-bottom: 7px; display: flex; justify-content: space-between; align-items: center; }
 .cre-card { background: var(--surface); border: 1px solid var(--border); border-radius: 11px; padding: 12px 14px; margin-bottom: 8px; }
 .cre-card-gold { background: #1a1307; border: 1px solid #3a2e10; border-radius: 11px; padding: 12px 14px; margin-bottom: 8px; }
 /* MOB Listings */
@@ -256,6 +256,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
   <button class="tab" onclick="showTab('weather',this)">Weather</button>
   <button class="tab" onclick="showTab('venture',this)">Venture</button>
   <button class="tab" onclick="showTab('cre',this)">CRE</button>
+  <button class="tab" onclick="showTab('lfro',this)">1908</button>
 </div>
 
 <!-- TAB: TODAY -->
@@ -535,65 +536,35 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
 <!-- TAB: GROW -->
 <div id="tab-grow" class="hidden">
 
-  <!-- T1 -->
-  <div class="section" id="tray-t1">
-    <div class="section-label" style="justify-content:space-between;">
-      <span>🥦 Hydro-Mic T1 — Broccoli</span>
-      <span style="color:var(--muted);font-size:9px;letter-spacing:0;text-transform:none;" id="tray-t1-meta">started May 6</span>
-    </div>
-    <div id="grow-t1-today-strip" style="background:#0d1a09;border:1px solid #1a3a1a;border-radius:10px;padding:10px 13px;margin-bottom:8px;">
-      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#97C459;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Today's tasks</div>
-      <div id="grow-t1-today-events" style="display:flex;flex-direction:column;gap:5px;"></div>
-    </div>
-    <div class="garden-grid">
-      <div class="garden-card" id="gc-t1-water" style="grid-column:1/-1;"><div class="garden-label">Bottom water — daily</div><div class="garden-value">May 7 – 18</div><div class="garden-sub">refill tray if dry · plain water · bamboo medium</div></div>
-      <div class="garden-card" id="gc-t1-weight"><div class="garden-label">Remove weight</div><div class="garden-value">May 9</div><div class="garden-sub">day 3–4 · keep dome on · 15 lb weight</div></div>
-      <div class="garden-card" id="gc-t1-dome"><div class="garden-label">Remove dome</div><div class="garden-value">May 10</div><div class="garden-sub">fan ON · Feit timer · no top water after</div></div>
-      <div class="garden-card" id="gc-t1-growth"><div class="garden-label">Check growth — daily</div><div class="garden-value">May 11 – 18</div><div class="garden-sub">target 2–3 in · bottom water only · foliage dry</div></div>
-      <div class="garden-card" id="gc-t1-harvest" style="border-color:#97C459;background:#0d1a09;"><div class="garden-label" style="color:#97C459;">Harvest day</div><div class="garden-value" style="color:#97C459;">May 16</div><div class="garden-sub">stop water 12hr before · cut 2–3in · refrigerate 7–9 days</div></div>
-    </div>
-  </div>
+  <div id="grow-tray-list"></div>
+  <div id="grow-empty" style="display:none;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;padding:28px 0;">No active trays · add one below</div>
 
-  <!-- T2 + T3 -->
-  <div class="section" id="tray-t23">
-    <div class="section-label" style="justify-content:space-between;">
-      <span>🥦 Hydro-Mic T2 + T3 — Broccoli</span>
-      <span style="color:var(--muted);font-size:9px;letter-spacing:0;text-transform:none;" id="tray-t23-meta">started May 11</span>
-    </div>
-    <div id="grow-t23-today-strip" style="background:#0d1a09;border:1px solid #1a3a1a;border-radius:10px;padding:10px 13px;margin-bottom:8px;">
-      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#97C459;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Today's tasks</div>
-      <div id="grow-t23-today-events" style="display:flex;flex-direction:column;gap:5px;"></div>
-    </div>
-    <div class="garden-grid">
-      <div class="garden-card" id="gc-t23-water" style="grid-column:1/-1;"><div class="garden-label">Bottom water — daily</div><div class="garden-value">May 12 – 21</div><div class="garden-sub">T2 silicone · T3 plastic · 30g broccoli seeds each</div></div>
-      <div class="garden-card" id="gc-t23-weight"><div class="garden-label">Remove weight</div><div class="garden-value">May 14</div><div class="garden-sub">keep dome on · check shoot height</div></div>
-      <div class="garden-card" id="gc-t23-dome"><div class="garden-label">Remove dome</div><div class="garden-value">May 15</div><div class="garden-sub">fan ON · Feit timer 4:30a–8:30p · no top water after</div></div>
-      <div class="garden-card" id="gc-t23-growth"><div class="garden-label">Check growth — daily</div><div class="garden-value">May 16 – 21</div><div class="garden-sub">target 2–3 in · compare T2 vs T3 · bottom water only</div></div>
-      <div class="garden-card" id="gc-t23-harvest" style="border-color:#97C459;background:#0d1a09;"><div class="garden-label" style="color:#97C459;">Harvest day</div><div class="garden-value" style="color:#97C459;">May 21</div><div class="garden-sub">stop water 12hr before · cut 2–3in · compare T1 vs T2 vs T3</div></div>
-    </div>
-  </div>
+  <div class="section">
+    <div class="section-label">Add Tray</div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:12px 14px;">
 
-  <!-- T5 -->
-  <div class="section" id="tray-t5">
-    <div class="section-label" style="justify-content:space-between;">
-      <span>🌱 Hydro-Mic T5 — Mung Bean Sprout</span>
-      <span style="color:var(--muted);font-size:9px;letter-spacing:0;text-transform:none;" id="tray-t5-meta">started May 13</span>
-    </div>
-    <div id="grow-t5-today-strip" style="background:#0d1a09;border:1px solid #1a3a1a;border-radius:10px;padding:10px 13px;margin-bottom:8px;">
-      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#97C459;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Today's tasks</div>
-      <div id="grow-t5-today-events" style="display:flex;flex-direction:column;gap:5px;"></div>
-    </div>
-    <div class="garden-grid">
-      <div class="garden-card" id="gc-t5-rinse" style="grid-column:1/-1;"><div class="garden-label">Rinse — 2x daily</div><div class="garden-value">May 14 – 17</div><div class="garden-sub">7 AM + 7 PM · lift tray · pour cool water · drain completely</div></div>
-      <div class="garden-card" id="gc-t5-weight"><div class="garden-label">Remove weight</div><div class="garden-value">May 16</div><div class="garden-sub">day 3 · keep cover tray on · shoots pushing up</div></div>
-      <div class="garden-card" id="gc-t5-dome"><div class="garden-label">Remove cover tray</div><div class="garden-value">May 17</div><div class="garden-sub">day 4 · keep dark — no lights needed · rinse 2x daily</div></div>
-      <div class="garden-card" id="gc-t5-growth"><div class="garden-label">Check growth — daily</div><div class="garden-value">May 14 – 17</div><div class="garden-sub">target 1–2 in tails · white/cream color · keep dark</div></div>
-      <div class="garden-card" id="gc-t5-harvest" style="border-color:#97C459;background:#0d1a09;"><div class="garden-label" style="color:#97C459;">Harvest day</div><div class="garden-value" style="color:#97C459;">May 18</div><div class="garden-sub">final rinse · pull by root · pat dry · refrigerate 5 days</div></div>
+      <!-- Template selector -->
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px;">Template</div>
+      <div style="display:flex;gap:0;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:8px;">
+        <button class="grow-tmpl-btn" data-t="sprouts" onclick="selectGrowTemplate('sprouts',this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:8px 4px;border:none;background:#0d1a09;color:#97C459;cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">🌱 Sprouts</button>
+        <button class="grow-tmpl-btn" data-t="microgreens" onclick="selectGrowTemplate('microgreens',this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:8px 4px;border:none;background:none;color:#ccc;cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">🌿 Micro</button>
+        <button class="grow-tmpl-btn" data-t="custom" onclick="selectGrowTemplate('custom',this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:8px 4px;border:none;background:none;color:#ccc;cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">✏️ Custom</button>
+      </div>
+
+      <input id="grow-new-name" placeholder="Tray name (e.g. T8 — Mung Sprouts)" maxlength="60" style="width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;caret-color:#97C459;margin-bottom:6px;"/>
+
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;">Start date</div>
+      <input id="grow-new-start" type="date" style="width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text);outline:none;margin-bottom:8px;" oninput="growPreviewHarvest()"/>
+
+      <div id="grow-harvest-preview" style="display:none;font-family:'DM Mono',monospace;font-size:10px;color:#97C459;margin-bottom:8px;padding:6px 10px;background:#0d1a09;border:1px solid #1a3a1a;border-radius:6px;"></div>
+
+      <button onclick="addGrowTray()" style="width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#97C459;background:none;border:1px solid #1a3a10;border-radius:7px;padding:9px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;">+ Add Tray</button>
     </div>
   </div>
 
 </div>
 
+<!-- TAB: REVIEW -->
 <!-- TAB: REVIEW -->
 <div id="tab-review" class="hidden">
   <div class="section">
@@ -722,7 +693,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
         <div id="cre-mod-question" style="font-size:13px;color:var(--text);line-height:1.5;margin-bottom:10px;"></div>
         <div id="cre-mod-answers" style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;"></div>
         <div id="cre-mod-result" style="display:none;border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:12px;line-height:1.5;"></div>
-        <button id="cre-mod-complete-btn" onclick="completeModule()" style="display:none;width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#111;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;">Mark Complete ✓</button>
+        <button id="cre-mod-complete-btn" onclick="completeModule()" style="display:none;width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#888;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;">Mark Complete ✓</button>
       </div>
     </div>
   </div>
@@ -747,7 +718,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
         <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:3px;">Rate (%)</div><input id="da-rate" type="number" placeholder="7.25" style="width:100%;background:#0a0a0a;border:1px solid #3a2e10;border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);outline:none;caret-color:#D4A853;"/></div>
         <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:3px;">Amort (yrs)</div><input id="da-amort" type="number" placeholder="25" style="width:100%;background:#0a0a0a;border:1px solid #3a2e10;border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);outline:none;caret-color:#D4A853;"/></div>
       </div>
-      <button onclick="runDealAnalyzer()" style="width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#111;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;margin-bottom:10px;">Analyze Deal</button>
+      <button onclick="runDealAnalyzer()" style="width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#888;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;margin-bottom:10px;">Analyze Deal</button>
       <div id="da-results" style="display:none;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;" id="da-grid"></div>
         <div id="da-verdict" style="border-radius:8px;padding:10px 12px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.6;"></div>
@@ -775,7 +746,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
         <button class="cr-class-btn" onclick="selectCrClass('B',this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:#1a1307;color:#D4A853;cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">Class B</button>
         <button class="cr-class-btn" onclick="selectCrClass('C',this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:none;color:var(--muted);cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">Class C</button>
       </div>
-      <button onclick="runCompsAnalysis()" style="width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#111;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;">Run Comps</button>
+      <button onclick="runCompsAnalysis()" style="width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#888;background:#D4A853;border:none;border-radius:7px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;font-weight:600;">Run Comps</button>
     </div>
     <div id="cr-subject-out" style="display:none;margin-bottom:10px;">
       <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Indicated Value Range</div>
@@ -795,6 +766,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
       <span class="cre-collapse-arrow" id="arr-comps">▸</span>
     </div>
     <div class="cre-collapse-body closed" id="body-comps" style="padding-bottom:0;">
+      <div style="text-align:right;margin-bottom:6px;"><span onclick="resetComps()" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;">Reset</span></div>
     <div class="cre-card" style="margin-bottom:8px;">
       <input id="comp-address" placeholder="Address" maxlength="60" style="width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;margin-bottom:6px;caret-color:#D4A853;"/>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:6px;">
@@ -819,6 +791,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
       <span class="cre-collapse-arrow" id="arr-mob">▸</span>
     </div>
     <div class="cre-collapse-body closed" id="body-mob" style="padding-bottom:0;">
+      <div style="text-align:right;margin-bottom:6px;"><span onclick="resetMobListings()" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;">Reset</span></div>
 
     <!-- Sale / Lease tab toggle -->
     <div style="display:flex;gap:0;background:#0a0a0a;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:10px;">
@@ -934,6 +907,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
       <span class="cre-collapse-arrow" id="arr-crm">▸</span>
     </div>
     <div class="cre-collapse-body closed" id="body-crm" style="padding-bottom:0;">
+      <div style="text-align:right;margin-bottom:6px;"><span onclick="resetCrm()" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;">Reset</span></div>
     <div class="cre-card" style="margin-bottom:8px;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">
         <input id="crm-name" placeholder="Name" maxlength="40" style="background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;caret-color:#D4A853;width:100%;"/>
@@ -965,6 +939,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
       <span class="cre-collapse-arrow" id="arr-offers">▸</span>
     </div>
     <div class="cre-collapse-body closed" id="body-offers" style="padding-bottom:0;">
+      <div style="text-align:right;margin-bottom:6px;"><span onclick="resetOffers()" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;">Reset</span></div>
     <div class="cre-card" style="margin-bottom:8px;">
       <input id="offer-name" placeholder="Property / Deal name" maxlength="50" style="width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;margin-bottom:6px;caret-color:#D4A853;"/>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
@@ -977,10 +952,176 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
     <div id="offer-empty" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;padding:16px;">No deals in pipeline yet</div>
     </div>
   </div>
-
+  </div>
 </div>
 </div>
 <!-- END TAB: CRE -->
+
+
+<!-- TAB: LFRO -->
+<div id="tab-lfro" class="hidden">
+
+  <!-- DAILY HABITS — always open -->
+  <div class="section">
+    <div class="section-label">Daily Habits <span style="cursor:pointer;color:var(--muted);font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;font-size:10px;" onclick="resetExHabits()">Reset</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;">
+      <button class="cre-habit-btn" id="ex-habit-1" onclick="toggleExHabit('h1')">
+        <span class="cre-habit-name" id="ex-habit-1-name">Outreach</span>
+        <span class="cre-habit-streak" id="ex-streak-1">0d</span>
+      </button>
+      <button class="cre-habit-btn" id="ex-habit-2" onclick="toggleExHabit('h2')">
+        <span class="cre-habit-name" id="ex-habit-2-name">Follow Up</span>
+        <span class="cre-habit-streak" id="ex-streak-2">0d</span>
+      </button>
+      <button class="cre-habit-btn" id="ex-habit-3" onclick="toggleExHabit('h3')">
+        <span class="cre-habit-name" id="ex-habit-3-name">Market Read</span>
+        <span class="cre-habit-streak" id="ex-streak-3">0d</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MARKET PULSE — collapsed -->
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="cre-collapse-hd" onclick="toggleCreSection('ex-pulse')">
+      <div class="cre-section-hd" style="margin-bottom:0;">Market Pulse</div>
+      <span class="cre-collapse-arrow" id="arr-ex-pulse">▸</span>
+    </div>
+    <div class="cre-collapse-body closed" id="body-ex-pulse" style="padding-bottom:10px;">
+      <div style="text-align:right;margin-bottom:6px;"><span onclick="liReset()" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;">Reset</span></div>
+      <div class="cre-card" style="margin-bottom:8px;">
+        <div class="pulse-row"><span class="pulse-label">30yr Fixed</span><span class="pulse-val">6.87%</span></div>
+        <div class="pulse-row"><span class="pulse-label">15yr Fixed</span><span class="pulse-val">6.13%</span></div>
+        <div class="pulse-row"><span class="pulse-label">New Build Incentives</span><span class="pulse-val pulse-up">Active</span></div>
+        <div class="pulse-row"><span class="pulse-label">Bay Area Transplants</span><span class="pulse-val pulse-up">High</span></div>
+        <div class="pulse-row"><span class="pulse-label">Roseville New Supply</span><span class="pulse-val">Moderate</span></div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:10px 13px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Market Notes</div>
+        <textarea id="li-notes" placeholder="Bay Area transplant trends, hot neighborhoods..." maxlength="500" style="width:100%;background:none;border:none;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12px;resize:none;outline:none;min-height:60px;caret-color:#D4A853;" rows="3" oninput="liSave()"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMISSION CALC — collapsed -->
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="cre-collapse-hd" onclick="toggleCreSection('ex-calc')">
+      <div class="cre-section-hd" style="margin-bottom:0;">Commission Calc</div>
+      <span class="cre-collapse-arrow" id="arr-ex-calc">▸</span>
+    </div>
+    <div class="cre-collapse-body closed" id="body-ex-calc" style="padding-bottom:10px;">
+      <div style="text-align:right;margin-bottom:6px;"><span onclick="lcReset()" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;">Reset</span></div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:12px 14px;margin-bottom:8px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Sale Price ($)</div>
+        <input id="lc-price" type="number" placeholder="668000" oninput="lfroCalc()" style="width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:13px;color:var(--text);outline:none;caret-color:var(--accent);margin-bottom:10px;"/>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Agent Commission % <span id="lc-agent-lbl" style="color:var(--accent);">3%</span></div>
+        <div style="display:flex;gap:0;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:6px;">
+          <button onclick="lcSetAgent(2.0,this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">2%</button>
+          <button onclick="lcSetAgent(2.5,this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">2.5%</button>
+          <button onclick="lcSetAgent(3.5,this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:var(--dim);color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">3.5%</button>
+          <button onclick="lcSetAgent(null,this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">Custom</button>
+        </div>
+        <input id="lc-agent-pct" type="number" placeholder="3" value="3" oninput="lfroCalc()" style="width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);outline:none;caret-color:var(--accent);margin-bottom:10px;"/>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">My Referral Fee % of Agent Commission <span id="lc-ref-lbl" style="color:var(--accent);">25%</span></div>
+        <div style="display:flex;gap:0;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:6px;">
+          <button onclick="lcSetRef(20,this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">20%</button>
+          <button onclick="lcSetRef(25,this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:var(--dim);color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">25%</button>
+          <button onclick="lcSetRef(30,this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">30%</button>
+          <button onclick="lcSetRef(null,this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">Custom</button>
+        </div>
+        <input id="lc-ref-pct" type="number" placeholder="25" value="25" oninput="lfroCalc()" style="width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);outline:none;caret-color:var(--accent);margin-bottom:10px;"/>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Park &amp; Refer Fee</div>
+        <div style="display:flex;gap:0;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:10px;">
+          <button onclick="lcSetPR('auto',this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:var(--dim);color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">Auto</button>
+          <button onclick="lcSetPR('pct9',this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">9%</button>
+          <button onclick="lcSetPR('flat325',this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">$325</button>
+          <button onclick="lcSetPR('pct25',this)" style="flex:1;font-family:'DM Mono',monospace;font-size:9px;padding:7px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">25%</button>
+        </div>
+        <div id="lc-results" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NETWORK — collapsed -->
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="cre-collapse-hd" onclick="toggleCreSection('ex-network')">
+      <div class="cre-section-hd" style="margin-bottom:0;">Network</div>
+      <span class="cre-collapse-arrow" id="arr-ex-network">▸</span>
+    </div>
+    <div class="cre-collapse-body closed" id="body-ex-network" style="padding-bottom:10px;">
+      <div style="text-align:right;margin-bottom:6px;"><span onclick="lnReset()" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;">Reset</span></div>
+      <div class="cre-card" style="margin-bottom:8px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">
+          <input id="ln-name" placeholder="Name" maxlength="40" style="background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;caret-color:#D4A853;width:100%;"/>
+          <input id="ln-phone" type="tel" placeholder="Phone" maxlength="20" style="background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);outline:none;caret-color:#D4A853;width:100%;"/>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:6px;">
+          <button class="ln-cat-btn" onclick="lnSetCat('Buyer',this)" style="font-family:'DM Mono',monospace;font-size:8px;padding:7px 2px;border:none;background:var(--dim);color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">Buyer</button>
+          <button class="ln-cat-btn" onclick="lnSetCat('Seller',this)" style="font-family:'DM Mono',monospace;font-size:8px;padding:7px 2px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">Seller</button>
+          <button class="ln-cat-btn" onclick="lnSetCat('Agent',this)" style="font-family:'DM Mono',monospace;font-size:8px;padding:7px 2px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">Agent</button>
+          <button class="ln-cat-btn" onclick="lnSetCat('Lender',this)" style="font-family:'DM Mono',monospace;font-size:8px;padding:7px 2px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">Lender</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:6px;">
+          <button class="ln-cat-btn" onclick="lnSetCat('Builder',this)" style="font-family:'DM Mono',monospace;font-size:8px;padding:7px 2px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">Builder</button>
+          <button class="ln-cat-btn" onclick="lnSetCat('Investor',this)" style="font-family:'DM Mono',monospace;font-size:8px;padding:7px 2px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">Investor</button>
+          <button class="ln-cat-btn" onclick="lnSetCat('BayArea',this)" style="font-family:'DM Mono',monospace;font-size:8px;padding:7px 2px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">Bay Area</button>
+          <button class="ln-cat-btn" onclick="lnSetCat('Broker',this)" style="font-family:'DM Mono',monospace;font-size:8px;padding:7px 2px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">Broker</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:6px;">
+          <button class="ln-cat-btn" onclick="lnSetCat('BizBuyer',this)" style="font-family:'DM Mono',monospace;font-size:8px;padding:7px 2px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;border-right:1px solid var(--border);text-transform:uppercase;">Biz Buyer</button>
+          <button class="ln-cat-btn" onclick="lnSetCat('BizSeller',this)" style="font-family:'DM Mono',monospace;font-size:8px;padding:7px 2px;border:none;background:none;color:var(--text);cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">Biz Seller</button>
+        </div>
+        <input id="ln-notes" placeholder="Notes" maxlength="80" style="width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;margin-bottom:8px;caret-color:#D4A853;"/>
+        <button onclick="lnAdd()" style="width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#D4A853;background:none;border:1px solid #3a2e10;border-radius:7px;padding:9px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;">Add Contact</button>
+      </div>
+      <input id="ln-search" placeholder="Search network..." oninput="lnRender()" style="width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;margin-bottom:8px;caret-color:#D4A853;"/>
+      <div id="ln-list"></div>
+      <div id="ln-empty" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;padding:16px;">No contacts yet</div>
+    </div>
+  </div>
+
+  <!-- NORCAL BUILDERS — collapsed — includes builder incentives -->
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="cre-collapse-hd" onclick="toggleCreSection('ex-builders')">
+      <div class="cre-section-hd" style="margin-bottom:0;">NorCal Builders</div>
+      <span class="cre-collapse-arrow" id="arr-ex-builders">▸</span>
+    </div>
+    <div class="cre-collapse-body closed" id="body-ex-builders" style="padding-bottom:10px;">
+      <div style="text-align:right;margin-bottom:6px;"><span onclick="lbReset()" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;">Reset</span></div>
+      <div id="lb-list"></div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:10px 13px;margin-top:8px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Builder Incentives</div>
+        <textarea id="li-builders" placeholder="DR Horton rate buydowns, Lennar closing costs..." maxlength="500" style="width:100%;background:none;border:none;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12px;resize:none;outline:none;min-height:60px;caret-color:#D4A853;" rows="3" oninput="liSave()"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUSINESS BROKERS — collapsed -->
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="cre-collapse-hd" onclick="toggleCreSection('ex-brokers')">
+      <div class="cre-section-hd" style="margin-bottom:0;">Business Brokers</div>
+      <span class="cre-collapse-arrow" id="arr-ex-brokers">▸</span>
+    </div>
+    <div class="cre-collapse-body closed" id="body-ex-brokers" style="padding-bottom:10px;">
+      <div style="text-align:right;margin-bottom:6px;"><span onclick="lbbReset()" style="cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;">Reset</span></div>
+      <div class="cre-card" style="margin-bottom:8px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">
+          <input id="lbb-name" placeholder="Broker name" maxlength="40" style="background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;caret-color:#D4A853;width:100%;"/>
+          <input id="lbb-firm" placeholder="Firm" maxlength="40" style="background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text);outline:none;caret-color:#D4A853;width:100%;"/>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">
+          <input id="lbb-phone" type="tel" placeholder="Phone" maxlength="20" style="background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text);outline:none;caret-color:#D4A853;width:100%;"/>
+          <input id="lbb-pct" type="number" placeholder="Ref fee %" style="background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text);outline:none;caret-color:#D4A853;width:100%;"/>
+        </div>
+        <input id="lbb-notes" placeholder="Specialty, territory, notes..." maxlength="100" style="width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;margin-bottom:8px;caret-color:#D4A853;"/>
+        <button onclick="lbbAdd()" style="width:100%;font-family:'DM Mono',monospace;font-size:10px;color:#D4A853;background:none;border:1px solid #3a2e10;border-radius:7px;padding:9px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;">Add Broker</button>
+      </div>
+      <div id="lbb-list"></div>
+      <div id="lbb-empty" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;padding:16px;">No brokers yet</div>
+    </div>
+  </div>
+
+</div>
+<!-- END TAB: LFRO -->
 
 <div class="footer">
   <div class="footer-text">The system is the work.</div>
@@ -1042,19 +1183,21 @@ const textColors={work:"#85B7EB",gym:"#97C459",admin:"#EF9F27",rest:"#AFA9EC",ve
 function toMins(t){const[h,m]=t.split(":").map(Number);return h*60+m;}
 function fmt12(t){const[h,m]=t.split(":").map(Number);return`${h%12||12}:${String(m).padStart(2,"0")} ${h>=12?"PM":"AM"}`;}
 function getPT(){return new Date(new Date().toLocaleString("en-US",{timeZone:"America/Los_Angeles"}));}
-function todayKey(){const n=getPT();return`${n.getFullYear()}-${n.getMonth()+1}-${n.getDate()}`;}
+function todayKey(){const n=getPT();return`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;}
 function getBlock(n){let c=schedule[0],x=schedule[1];for(let i=0;i<schedule.length;i++){if(toMins(schedule[i].time)<=n){c=schedule[i];x=schedule[i+1]||null;}}return{cur:c,nxt:x};}
 
 function showTab(name,btn){
   document.querySelectorAll('[id^="tab-"]').forEach(el=>el.classList.add('hidden'));
   document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));
-  document.getElementById('tab-'+name).classList.remove('hidden');
+  const tabEl = document.getElementById('tab-'+name);
+  if(tabEl) tabEl.classList.remove('hidden');
   if(btn)btn.classList.add('active');
-  if(name==='pomo')loadPomoMITs();
-  if(name==='progress')updateProgress();
-  if(name==='grow')loadGrowTab();
-  if(name==='venture')loadVentureTab();
-  if(name==='cre')loadCreTab();
+  try { if(name==='pomo')loadPomoMITs(); } catch(e){ console.warn('tab pomo err',e); }
+  try { if(name==='progress')updateProgress(); } catch(e){ console.warn('tab progress err',e); }
+  try { if(name==='grow')loadGrowTab(); } catch(e){ console.warn('tab grow err',e); }
+  try { if(name==='venture')loadVentureTab(); } catch(e){ console.warn('tab venture err',e); }
+  try { if(name==='cre')loadCreTab(); } catch(e){ console.warn('tab cre err',e); }
+  try { if(name==='lfro')loadLfroTab(); } catch(e){ console.warn('tab lfro err',e); }
 }
 
 // ── SOP ALARMS ────────────────────────────────────────────────────────────
@@ -1600,141 +1743,294 @@ function loadVentureTab() {
 }
 
 // ── GROW TAB ──────────────────────────────────────────────────────────────
-const T1_EVENTS = {
-  '2026-5-7':[{label:'Check Bottom Water',desc:'Refill tray if dry · plain water'}],
-  '2026-5-8':[{label:'Check Bottom Water',desc:'Refill tray if dry · plain water'}],
-  '2026-5-9':[{label:'Remove Weight',desc:'Day 3–4 · keep dome on · 15 lb weight'},{label:'Check Bottom Water',desc:'Refill tray if dry'}],
-  '2026-5-10':[{label:'Remove Dome! Fan ON!',desc:'Shoots 1 inch tall · fan ON · Feit timer · no top water after'},{label:'Check Bottom Water',desc:'Refill tray if dry'}],
-  '2026-5-11':[{label:'Check Growth',desc:'Target 2–3 in · bottom water only · foliage dry'},{label:'Check Bottom Water',desc:'Refill tray if dry'}],
-  '2026-5-12':[{label:'Check Growth',desc:'Target 2–3 in · bottom water only · foliage dry'},{label:'Check Bottom Water',desc:'Refill tray if dry'}],
-  '2026-5-13':[{label:'Check Growth',desc:'Target 2–3 in · bottom water only · foliage dry'},{label:'Check Bottom Water',desc:'Refill tray if dry'}],
-  '2026-5-14':[{label:'Check Growth',desc:'Target 2–3 in · bottom water only · foliage dry'},{label:'Check Bottom Water',desc:'Refill tray if dry'}],
-  '2026-5-15':[{label:'Check Growth',desc:'Target 2–3 in · bottom water only · foliage dry'},{label:'Check Bottom Water',desc:'Refill tray if dry'}],
-  '2026-5-16':[{label:'HARVEST DAY!',desc:'Cut at 2–3 in · stop water 12hr before · refrigerate 7–9 days'},{label:'Check Growth',desc:'Final check before harvest'}],
-  '2026-5-17':[{label:'Check Bottom Water',desc:'Refill tray if dry · plain water'}],
-  '2026-5-18':[{label:'Check Bottom Water',desc:'Refill tray if dry · plain water'}],
-};
-const T23_EVENTS = {
-  '2026-5-12':[{label:'Check Bottom Water',desc:'T2 silicone + T3 plastic · refill if dry · plain water'}],
-  '2026-5-13':[{label:'Check Bottom Water',desc:'T2 silicone + T3 plastic · refill if dry · plain water'}],
-  '2026-5-14':[{label:'Remove Weight',desc:'Day 3–4 · keep dome on · check shoot height'},{label:'Check Bottom Water',desc:'Refill if dry'}],
-  '2026-5-15':[{label:'Remove Dome! Fan ON! Lights ON!',desc:'1 inch tall · Feit timer 4:30a–8:30p · no top water after'},{label:'Check Bottom Water',desc:'Refill if dry'}],
-  '2026-5-16':[{label:'Check Daily Growth',desc:'Target 2–3 in · compare T2 vs T3 · bottom water only'},{label:'Check Bottom Water',desc:'Refill if dry'}],
-  '2026-5-17':[{label:'Check Daily Growth',desc:'Target 2–3 in · compare T2 vs T3 · bottom water only'},{label:'Check Bottom Water',desc:'Refill if dry'}],
-  '2026-5-18':[{label:'Check Daily Growth',desc:'Target 2–3 in · compare T2 vs T3 · bottom water only'},{label:'Check Bottom Water',desc:'Refill if dry'}],
-  '2026-5-19':[{label:'Check Daily Growth',desc:'Target 2–3 in · compare T2 vs T3 · bottom water only'},{label:'Check Bottom Water',desc:'Refill if dry'}],
-  '2026-5-20':[{label:'Check Daily Growth',desc:'Target 2–3 in · compare T2 vs T3 · bottom water only'},{label:'Check Bottom Water',desc:'Refill if dry'}],
-  '2026-5-21':[{label:'HARVEST DAY!',desc:'Stop water 12hr before · cut 2–3in · compare T1 vs T2 vs T3'},{label:'Check Daily Growth',desc:'Final check before harvest'}],
-};
-const T5_EVENTS = {
-  '2026-5-13':[{label:'Soak Seeds 8–12 Hours',desc:'35g mung bean seeds · cool plain water · seeds plump + light colored when ready'}],
-  '2026-5-14':[{label:'Drain + Setup Tray Day 1',desc:'Wet 1020 tray · spread seeds evenly thin layer · cover tray + weight on top · dark location'},{label:'Morning Rinse 7AM',desc:'Lift tray · pour cool water over seeds · drain completely · replace cover + weight'},{label:'Evening Rinse 7PM',desc:'Lift tray · pour cool water · drain · replace cover + weight · keep dark'}],
-  '2026-5-15':[{label:'Morning Rinse 7AM',desc:'Lift tray · pour cool water · drain completely · replace cover + weight · keep dark'},{label:'Evening Rinse 7PM',desc:'Lift tray · rinse · drain · check for germination · shoots emerging?'}],
-  '2026-5-16':[{label:'Remove Weight — Day 3',desc:'Remove weight · keep cover tray on · shoots pushing up · continue rinsing 2x daily'},{label:'Morning Rinse 7AM',desc:'Lift tray · rinse · drain · replace cover tray · keep dark'},{label:'Evening Rinse 7PM',desc:'Lift tray · rinse · drain · replace cover tray'}],
-  '2026-5-17':[{label:'Remove Cover Tray — Day 4',desc:'Remove cover tray · keep dark — no lights needed · shoots 1–2 in · rinse 2x daily'},{label:'Morning Rinse 7AM',desc:'Rinse + drain · keep in dark · check shoot height'},{label:'Evening Rinse 7PM',desc:'Final rinse before harvest tomorrow · drain well'}],
-  '2026-5-18':[{label:'HARVEST DAY! 🎉 Day 5',desc:'Final rinse · drain well · pull sprouts by root · rinse gently · pat dry · refrigerate 5 days'}],
-};
 
-function loadGrowTab(){
-  const today=todayKey();
-  function isPast(k){return today>k;}
-  function isToday(k){return today===k;}
-  function isFuture(k){return today<k;}
-
-  // Calculate day number from start date
-  function dayCount(startKey) {
-    const [y, m, d] = startKey.split('-').map(Number);
-    const start = new Date(y, m - 1, d);
-    const now = getPT();
-    const diff = Math.floor((now - start) / 86400000) + 1;
-    return diff > 0 ? diff : 0;
-  }
-
-  // Update tray meta label with day count
-  function updateTrayMeta(metaId, startKey, startLabel) {
-    const el = document.getElementById(metaId);
-    if (!el) return;
-    const day = dayCount(startKey);
-    el.textContent = day > 0 ? `Day ${day} · ${startLabel}` : startLabel;
-  }
-
-  // Collapse entire tray section if harvest date has passed
-  function collapseTrayIfDone(sectionId, harvestKey, label) {
-    if (!isPast(harvestKey)) return false;
-    const sec = document.getElementById(sectionId);
-    if (!sec) return false;
-    // Hide all children except the section-label
-    Array.from(sec.children).forEach((el, i) => { if (i > 0) el.style.display = 'none'; });
-    // Update label to show harvested state
-    const lbl = sec.querySelector('.section-label span:first-child');
-    if (lbl) lbl.innerHTML = lbl.innerHTML + ' <span style="color:#639922;font-size:9px;font-family:\'DM Mono\',monospace;text-transform:none;letter-spacing:0;">✓ harvested</span>';
-    return true;
-  }
-  function renderTodayStrip(elId, events, startKey, endKey) {
-    const el = document.getElementById(elId);if(!el)return;el.innerHTML='';
-    const evs = events[today];
-    if (evs && evs.length) {
-      evs.forEach((ev, idx) => {
-        const taskKey = elId + '_' + today + '_' + idx;
-        const checked = localStorage.getItem(taskKey) === '1';
-        const row = document.createElement('div');
-        row.style.cssText = `display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;cursor:pointer;opacity:${checked ? '0.4' : '1'};transition:opacity 0.2s;`;
-        row.onclick = () => {
-          const cur = localStorage.getItem(taskKey) === '1';
-          localStorage.setItem(taskKey, cur ? '0' : '1');
-          renderTodayStrip(elId, events, startKey, endKey);
-        };
-        row.innerHTML = `
-          <div style="width:16px;height:16px;border-radius:50%;border:1px solid ${checked?'#639922':'#2a4a2a'};background:${checked?'#1a3a1a':'none'};display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all 0.2s;">${checked?'<span style="font-size:9px;color:#639922;">✓</span>':''}</div>
-          <div style="flex:1;">
-            <div style="font-family:'DM Mono',monospace;font-size:11px;color:${checked?'#555':'#f0f0f0'};font-weight:500;${checked?'text-decoration:line-through;':''}">${ev.label}</div>
-            <div style="font-family:'DM Mono',monospace;font-size:10px;color:${checked?'#333':'#639922'};">${ev.desc}</div>
-          </div>`;
-        el.appendChild(row);
-      });
-    } else if (isPast(endKey)) {
-      el.innerHTML = `<div style="font-family:'DM Mono',monospace;font-size:10px;color:#639922;">✓ Harvest complete</div>`;
-    } else if (isPast(startKey)) {
-      // Past day within active tray — show auto-checked
-      const pastKey = Object.keys(events).filter(k => k < today).pop();
-      const pastEvs = pastKey ? events[pastKey] : [];
-      if (pastEvs.length) {
-        pastEvs.forEach(ev => {
-          const row = document.createElement('div');
-          row.style.cssText = 'display:flex;align-items:flex-start;gap:8px;margin-bottom:4px;opacity:0.3;';
-          row.innerHTML = `
-            <div style="width:16px;height:16px;border-radius:50%;border:1px solid #639922;background:#1a3a1a;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><span style="font-size:9px;color:#639922;">✓</span></div>
-            <div style="flex:1;"><div style="font-family:'DM Mono',monospace;font-size:11px;color:#555;text-decoration:line-through;">${ev.label}</div></div>`;
-          el.appendChild(row);
-        });
-      } else {
-        el.innerHTML = `<div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">No tasks today</div>`;
-      }
-    } else {
-      const msg = isFuture(startKey) ? 'Not started yet' : 'No tasks today';
-      el.innerHTML = `<div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">${msg}</div>`;
+// ── Templates ──
+const GROW_TEMPLATES = {
+  sprouts: {
+    label: 'Mung Bean Sprouts',
+    harvestDay: 5,
+    milestones: [
+      { day: 1,   label: 'Setup', desc: 'Soak seeds 8–12hr · place in tray · cover tray + 20lb weight · keep dark' },
+      { day: 3,   label: 'Remove Weight', desc: 'Keep cover tray on · shoots pushing up · rinse 2x daily' },
+      { day: 4,   label: 'Remove Cover', desc: 'Keep completely dark — NO lights · rinse 2x daily' },
+      { day: 5,   label: 'Harvest', desc: 'Final rinse · pull sprouts by root · pat dry · refrigerate up to 5 days', harvest: true },
+    ],
+    // tasks keyed by day number
+    dailyTasks: {
+      1: [{ label: 'Setup tray', desc: 'Seeds soaked · tray prepped · cover + weight · dark location' }],
+      2: [{ label: 'Morning rinse 7AM', desc: 'Lift tray · cool water · drain completely · replace cover · dark' },
+          { label: 'Evening rinse 7PM', desc: 'Rinse · drain · check germination · replace cover · dark' }],
+      3: [{ label: 'Remove weight', desc: 'Remove 20lb weight · keep cover tray on · shoots pushing' },
+          { label: 'Morning rinse 7AM', desc: 'Rinse + drain · replace cover · keep dark' },
+          { label: 'Evening rinse 7PM', desc: 'Rinse + drain · check shoot height' }],
+      4: [{ label: 'Remove cover tray', desc: 'Remove cover · keep dark — NO lights for sprouts' },
+          { label: 'Morning rinse 7AM', desc: 'Rinse + drain · keep dark' },
+          { label: 'Evening rinse 7PM', desc: 'Final rinse before harvest · drain well' }],
+      5: [{ label: '🎉 Harvest!', desc: 'Final rinse · pull sprouts by root · pat dry · refrigerate up to 5 days' }],
     }
+  },
+  microgreens: {
+    label: 'Mung Bean Microgreens',
+    harvestDay: 9,
+    milestones: [
+      { day: 1,   label: 'Setup', desc: '35g mung bean soaked · silicone mat · dome + 20lb weight · dark' },
+      { day: 4,   label: 'Remove Weight', desc: 'Keep dome on · check shoot height · top mist 2x daily' },
+      { day: 5,   label: 'Lights ON / Dome OFF', desc: 'Feit timer 4:30AM–8:30PM · fan ON low · bottom water only from now' },
+      { day: 9,   label: 'Harvest', desc: 'Stop water 12hr before · cut 2–3in above medium · refrigerate 7–9 days', harvest: true },
+    ],
+    dailyTasks: {
+      1: [{ label: 'Setup tray', desc: 'Silicone mat · 35g mung soaked · dome + 20lb weight · dark location' },
+          { label: 'Evening mist', desc: 'Top mist lightly · dome on · dark' }],
+      2: [{ label: 'Morning mist 7AM', desc: 'Top mist · dome on · dark · check germination' },
+          { label: 'Evening mist 7PM', desc: 'Top mist · dome on · keep dark' }],
+      3: [{ label: 'Morning mist 7AM', desc: 'Top mist · dome on · dark' },
+          { label: 'Evening mist 7PM', desc: 'Top mist · dome on · keep dark' }],
+      4: [{ label: 'Remove weight', desc: 'Remove 20lb weight · keep dome on · check shoot height' },
+          { label: 'Morning mist 7AM', desc: 'Top mist · dome still on' },
+          { label: 'Evening mist 7PM', desc: 'Top mist · dome on' }],
+      5: [{ label: '💡 Lights ON! Dome OFF!', desc: 'Remove dome · Feit timer 4:30AM–8:30PM · fan ON low · bottom water only from now' }],
+      6: [{ label: 'Check growth + bottom water', desc: 'Target 1–2 in · refill tray if dry · foliage dry · fan on' }],
+      7: [{ label: 'Check growth + bottom water', desc: 'Target 2–3 in · bottom water if dry · fan on' }],
+      8: [{ label: 'Check growth + bottom water', desc: 'Target 2–3 in · stop water 12hr before harvest' }],
+      9: [{ label: '🎉 Harvest!', desc: 'Cut 2–3in above medium · refrigerate 7–9 days' }],
+    }
+  },
+  custom: {
+    label: 'Custom Grow',
+    harvestDay: 7,
+    milestones: [
+      { day: 7, label: 'Harvest', desc: 'Harvest day', harvest: true },
+    ],
+    dailyTasks: {}
   }
-  function styleCard(id,dateKey){const card=document.getElementById(id);if(!card)return;if(isPast(dateKey)){card.style.opacity='0.45';}else if(isToday(dateKey)){card.style.border='1px solid #97C459';card.style.background='#0d1a09';const lbl=card.querySelector('.garden-label');if(lbl)lbl.style.color='#97C459';}}
-  function styleRangeCard(id,startKey,endKey){const card=document.getElementById(id);if(!card)return;if(isPast(endKey)){card.style.opacity='0.45';}else if(!isFuture(startKey)){card.style.border='1px solid #639922';card.style.background='#0a1a09';}}
-  // T1
-  updateTrayMeta('tray-t1-meta', '2026-5-6', 'started May 6');
-  if (!collapseTrayIfDone('tray-t1', '2026-5-18', 'T1')) {
-  renderTodayStrip('grow-t1-today-events',T1_EVENTS,'2026-5-7','2026-5-18');
-  styleRangeCard('gc-t1-water','2026-5-7','2026-5-18');styleCard('gc-t1-weight','2026-5-9');styleCard('gc-t1-dome','2026-5-10');styleRangeCard('gc-t1-growth','2026-5-11','2026-5-18');styleCard('gc-t1-harvest','2026-5-16');
+};
+
+let activeGrowTemplate = 'sprouts';
+
+function selectGrowTemplate(type, btn) {
+  activeGrowTemplate = type;
+  document.querySelectorAll('.grow-tmpl-btn').forEach(b => {
+    b.style.background = 'none';
+    b.style.color = '#ccc';
+  });
+  if (btn) { btn.style.background = '#0d1a09'; btn.style.color = '#97C459'; }
+  growPreviewHarvest();
+}
+
+function growPreviewHarvest() {
+  const startVal = document.getElementById('grow-new-start').value;
+  const preview  = document.getElementById('grow-harvest-preview');
+  const tmpl     = GROW_TEMPLATES[activeGrowTemplate];
+  if (!startVal || !tmpl) { if (preview) preview.style.display = 'none'; return; }
+  const [y, m, d] = startVal.split('-').map(Number);
+  const harvestDate = new Date(y, m - 1, d + tmpl.harvestDay - 1);
+  const fmt = harvestDate.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' });
+  if (preview) {
+    preview.textContent = 'Harvest est. Day ' + tmpl.harvestDay + ' · ' + fmt;
+    preview.style.display = 'block';
   }
-  // T2+T3
-  updateTrayMeta('tray-t23-meta', '2026-5-11', 'started May 11');
-  if (!collapseTrayIfDone('tray-t23', '2026-5-21', 'T2+T3')) {
-  renderTodayStrip('grow-t23-today-events',T23_EVENTS,'2026-5-12','2026-5-21');
-  styleRangeCard('gc-t23-water','2026-5-12','2026-5-21');styleCard('gc-t23-weight','2026-5-14');styleCard('gc-t23-dome','2026-5-15');styleRangeCard('gc-t23-growth','2026-5-16','2026-5-21');styleCard('gc-t23-harvest','2026-5-21');
+}
+
+function addGrowTray() {
+  const name  = (document.getElementById('grow-new-name').value || '').trim();
+  const start = document.getElementById('grow-new-start').value;
+  if (!name)  { alert('Enter a tray name'); return; }
+  if (!start) { alert('Set a start date'); return; }
+
+  const tmpl = GROW_TEMPLATES[activeGrowTemplate];
+  const [y, m, d] = start.split('-').map(Number);
+  // Compute harvest date string YYYY-MM-DD
+  const hd = new Date(y, m - 1, d + tmpl.harvestDay - 1);
+  const harvestStr = hd.getFullYear() + '-' + String(hd.getMonth()+1).padStart(2,'0') + '-' + String(hd.getDate()).padStart(2,'0');
+
+  const trays = getGrowTrays();
+  trays.push({
+    id: Date.now(),
+    name,
+    start,
+    harvest: harvestStr,
+    template: activeGrowTemplate,
+  });
+  saveGrowTrays(trays);
+  document.getElementById('grow-new-name').value = '';
+  document.getElementById('grow-new-start').value = '';
+  document.getElementById('grow-harvest-preview').style.display = 'none';
+  renderGrowTrays();
+}
+
+function getGrowTrays() {
+  return JSON.parse(localStorage.getItem('grow_trays') || '[]');
+}
+function saveGrowTrays(trays) {
+  localStorage.setItem('grow_trays', JSON.stringify(trays));
+}
+function deleteGrowTray(id) {
+  saveGrowTrays(getGrowTrays().filter(t => t.id !== id));
+  renderGrowTrays();
+}
+
+function growDayNum(startStr) {
+  if (!startStr) return 0;
+  const [y, m, d] = startStr.split('-').map(Number);
+  const diff = Math.floor((getPT() - new Date(y, m - 1, d)) / 86400000) + 1;
+  return diff > 0 ? diff : 1;
+}
+
+function renderGrowTodayTasks(tray, dayNum, container) {
+  const tmpl = GROW_TEMPLATES[tray.template] || GROW_TEMPLATES.sprouts;
+  const tasks = tmpl.dailyTasks[dayNum] || [];
+  container.innerHTML = '';
+  if (!tasks.length) {
+    container.innerHTML = '<div style="font-family:DM Mono,monospace;font-size:10px;color:var(--muted);">No tasks today</div>';
+    return;
   }
-  // T5
-  updateTrayMeta('tray-t5-meta', '2026-5-13', 'started May 13');
-  if (!collapseTrayIfDone('tray-t5', '2026-5-18', 'T5')) {
-  renderTodayStrip('grow-t5-today-events',T5_EVENTS,'2026-5-13','2026-5-18');
-  styleRangeCard('gc-t5-rinse','2026-5-14','2026-5-17');styleCard('gc-t5-weight','2026-5-16');styleCard('gc-t5-dome','2026-5-17');styleRangeCard('gc-t5-growth','2026-5-14','2026-5-17');styleCard('gc-t5-harvest','2026-5-18');
-  }
+  tasks.forEach(function(task, idx) {
+    const key = 'grow_task_' + tray.id + '_' + todayKey() + '_' + idx;
+    const checked = localStorage.getItem(key) === '1';
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;cursor:pointer;opacity:' + (checked ? '0.4' : '1') + ';transition:opacity 0.2s;';
+    row.onclick = function() {
+      localStorage.setItem(key, localStorage.getItem(key) === '1' ? '0' : '1');
+      renderGrowTrays();
+    };
+    const circle = document.createElement('div');
+    circle.style.cssText = 'width:16px;height:16px;border-radius:50%;border:1px solid ' + (checked ? '#639922' : '#2a4a2a') + ';background:' + (checked ? '#1a3a1a' : 'none') + ';display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;';
+    if (checked) circle.innerHTML = '<span style="font-size:9px;color:#639922;">✓</span>';
+    const text = document.createElement('div');
+    text.style.cssText = 'flex:1;';
+    const lbl = document.createElement('div');
+    lbl.style.cssText = 'font-family:DM Mono,monospace;font-size:11px;font-weight:500;color:' + (checked ? '#666' : '#f0f0f0') + ';' + (checked ? 'text-decoration:line-through;' : '');
+    lbl.textContent = task.label;
+    const desc = document.createElement('div');
+    desc.style.cssText = 'font-family:DM Mono,monospace;font-size:10px;color:' + (checked ? '#555' : '#97C459') + ';margin-top:2px;';
+    desc.textContent = task.desc;
+    text.appendChild(lbl);
+    text.appendChild(desc);
+    row.appendChild(circle);
+    row.appendChild(text);
+    container.appendChild(row);
+  });
+}
+
+function toggleGrowTask(key) {
+  const cur = localStorage.getItem(key) === '1';
+  localStorage.setItem(key, cur ? '0' : '1');
+  renderGrowTrays();
+}
+
+function renderGrowTrays() {
+  var trays = getGrowTrays();
+  var list  = document.getElementById('grow-tray-list');
+  var empty = document.getElementById('grow-empty');
+  if (!list) return;
+  list.innerHTML = '';
+  if (!trays.length) { if (empty) empty.style.display = 'block'; return; }
+  if (empty) empty.style.display = 'none';
+
+  var today = todayKey();
+
+  trays.forEach(function(tray) {
+    var tmpl       = GROW_TEMPLATES[tray.template] || GROW_TEMPLATES.sprouts;
+    var dayNum     = growDayNum(tray.start);
+    var isHarvested = tray.harvest && today > tray.harvest;
+    var isHarvestDay = tray.harvest && today === tray.harvest;
+
+    // Section wrapper
+    var sec = document.createElement('div');
+    sec.className = 'section';
+    if (isHarvested) sec.style.opacity = '0.55';
+
+    // Header
+    var hdr = document.createElement('div');
+    hdr.className = 'section-label';
+    hdr.style.cssText = 'justify-content:space-between;align-items:center;';
+    var titleSpan = document.createElement('span');
+    titleSpan.textContent = '🌱 ' + tray.name;
+    if (isHarvested) {
+      var hBadge = document.createElement('span');
+      hBadge.style.cssText = 'color:#639922;font-size:9px;margin-left:6px;';
+      hBadge.textContent = '✓ harvested';
+      titleSpan.appendChild(hBadge);
+    } else if (isHarvestDay) {
+      var hBadge = document.createElement('span');
+      hBadge.style.cssText = 'color:#97C459;font-size:9px;margin-left:6px;';
+      hBadge.textContent = '🎉 harvest today';
+      titleSpan.appendChild(hBadge);
+    }
+    var meta = document.createElement('div');
+    meta.style.cssText = 'display:flex;align-items:center;gap:10px;';
+    var dayLabel = document.createElement('span');
+    dayLabel.style.cssText = 'font-family:DM Mono,monospace;font-size:9px;color:var(--muted);text-transform:none;letter-spacing:0;';
+    dayLabel.textContent = 'Day ' + dayNum;
+    var delBtn = document.createElement('button');
+    delBtn.textContent = '✕';
+    delBtn.style.cssText = 'font-family:DM Mono,monospace;font-size:10px;color:var(--muted);background:none;border:1px solid var(--border);border-radius:6px;padding:2px 8px;cursor:pointer;-webkit-appearance:none;';
+    delBtn.onclick = (function(id){ return function(){ deleteGrowTray(id); }; })(tray.id);
+    meta.appendChild(dayLabel);
+    meta.appendChild(delBtn);
+    hdr.appendChild(titleSpan);
+    hdr.appendChild(meta);
+    sec.appendChild(hdr);
+
+    // Today task strip — only if not harvested
+    if (!isHarvested) {
+      var strip = document.createElement('div');
+      strip.style.cssText = 'background:#0d1a09;border:1px solid #1a3a1a;border-radius:10px;padding:10px 13px;margin-bottom:8px;';
+      var stripHdr = document.createElement('div');
+      stripHdr.style.cssText = 'font-family:DM Mono,monospace;font-size:9px;color:#97C459;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;';
+      stripHdr.textContent = 'Today · Day ' + dayNum;
+      var taskContainer = document.createElement('div');
+      renderGrowTodayTasks(tray, dayNum, taskContainer);
+      strip.appendChild(stripHdr);
+      strip.appendChild(taskContainer);
+      sec.appendChild(strip);
+    }
+
+    // Milestone cards
+    var grid = document.createElement('div');
+    grid.className = 'garden-grid';
+    tmpl.milestones.forEach(function(ms) {
+      var parts = tray.start.split('-').map(Number);
+      var dt = new Date(parts[0], parts[1]-1, parts[2] + ms.day - 1);
+      var msDate = dt.getFullYear() + '-' + String(dt.getMonth()+1).padStart(2,'0') + '-' + String(dt.getDate()).padStart(2,'0');
+      var msFmt = new Date(msDate + 'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
+      var isPast = today > msDate;
+      var isCur  = today === msDate;
+
+      var card = document.createElement('div');
+      card.className = 'garden-card';
+      if (ms.harvest && isCur)       { card.style.borderColor = '#97C459'; card.style.background = '#0d1a09'; }
+      else if (ms.harvest && isPast) { card.style.borderColor = '#639922'; card.style.background = '#0d1a09'; card.style.opacity = '0.6'; }
+      else if (isCur)                { card.style.borderColor = '#639922'; card.style.background = '#0a1a09'; }
+      else if (isPast)               { card.style.opacity = '0.4'; }
+
+      var cardLbl = document.createElement('div');
+      cardLbl.className = 'garden-label';
+      if (ms.harvest && (isCur || isPast)) cardLbl.style.color = '#97C459';
+      else if (isCur) cardLbl.style.color = '#97C459';
+      cardLbl.textContent = 'Day ' + ms.day + ' — ' + ms.label;
+
+      var cardVal = document.createElement('div');
+      cardVal.className = 'garden-value';
+      cardVal.style.fontSize = '11px';
+      cardVal.textContent = msFmt;
+
+      var cardSub = document.createElement('div');
+      cardSub.className = 'garden-sub';
+      cardSub.textContent = ms.desc;
+
+      card.appendChild(cardLbl);
+      card.appendChild(cardVal);
+      card.appendChild(cardSub);
+      grid.appendChild(card);
+    });
+    sec.appendChild(grid);
+    list.appendChild(sec);
+  });
+}
+
+function loadGrowTab() {
+  renderGrowTrays();
 }
 
 // ── JSONBIN SYNC ──────────────────────────────────────────────────────────
@@ -1746,7 +2042,7 @@ let syncTimer=null;
 function setSyncStatus(state){
   const dot=document.getElementById('sync-dot'),label=document.getElementById('sync-label');
   if(!dot||!label)return;
-  const map={idle:{color:'#555',text:'sync'},syncing:{color:'#BA7517',text:'syncing'},ok:{color:'#639922',text:'synced'},error:{color:'#D4537E',text:'offline'},setup:{color:'#9B59B6',text:'setup'}};
+  const map={idle:{color:'#999',text:'sync'},syncing:{color:'#BA7517',text:'syncing'},ok:{color:'#639922',text:'synced'},error:{color:'#D4537E',text:'offline'},setup:{color:'#9B59B6',text:'setup'}};
   const s=map[state]||map.idle;
   dot.style.background=s.color;label.textContent=s.text;label.style.color=s.color;
   const setupBtn=document.getElementById('sync-setup-btn');
@@ -1821,7 +2117,7 @@ async function syncPull(){
 window.arcSetup=function(binId,apiKey){localStorage.setItem('arc_bin_id',binId);localStorage.setItem('arc_api_key',apiKey);location.reload();};
 
 function copyTerminal(){
-  const cmd=`cd ~/Desktop/-/CLAUDE/ARC/PLANNING && git add . && git commit -m "update" && git push origin main`;
+  const cmd=`cd ~/Desktop/-/CLAUDE/DASH && git add Arc_Dashboard_iOS.html index.html && git commit -m "Arc Dashboard update" && git push`;
   navigator.clipboard.writeText(cmd).then(()=>{const btn=document.getElementById('terminal-btn');if(!btn)return;const orig=btn.textContent;btn.textContent='Copied!';btn.style.borderColor='#97C459';btn.style.color='#97C459';setTimeout(()=>{btn.textContent=orig;btn.style.borderColor='#639922';btn.style.color='#639922';},2000);}).catch(()=>{const ta=document.createElement('textarea');ta.value=cmd;ta.style.cssText='position:fixed;opacity:0;';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);const btn=document.getElementById('terminal-btn');if(btn){btn.textContent='Copied!';setTimeout(()=>btn.textContent='Terminal',2000);}});
 }
 
@@ -2756,6 +3052,11 @@ function markCreHabitDone(h) {
 }
 
 // ── CRE: Tab Load ─────────────────────────────────────────────────────────
+function resetComps(){if(!confirm('Clear all comps?'))return;localStorage.removeItem('cre_comps');renderComps([]);}
+function resetMobListings(){if(!confirm('Reset MOB listings to defaults?'))return;localStorage.removeItem('cre_mob_listings');loadCreTab();}
+function resetCrm(){if(!confirm('Clear all CRM contacts?'))return;localStorage.removeItem('cre_contacts');renderCrmList();}
+function resetOffers(){if(!confirm('Clear all pipeline offers?'))return;localStorage.removeItem('cre_offers');renderOffers([]);}
+
 function loadCreTab() {
   buildModuleStrip();
   renderModule();
@@ -3014,7 +3315,7 @@ function renderComps(comps){
 function loadComps(){renderComps(JSON.parse(localStorage.getItem('cre_comps')||'[]'));}
 
 // ── CRE: Contact CRM ─────────────────────────────────────────────────────
-const CRM_STYLES={broker:{color:'#D4A853',bg:'#1a1307',border:'#3a2e10'},owner:{color:'#378ADD',bg:'#0d1a2a',border:'#1a2e40'},lender:{color:'#639922',bg:'#111a09',border:'#1a3a10'},attorney:{color:'#9B59B6',bg:'#1a0d2e',border:'#3a1a5a'},other:{color:'#555',bg:'#111',border:'#2a2a2a'}};
+const CRM_STYLES={broker:{color:'#D4A853',bg:'#1a1307',border:'#3a2e10'},owner:{color:'#378ADD',bg:'#0d1a2a',border:'#1a2e40'},lender:{color:'#639922',bg:'#111a09',border:'#1a3a10'},attorney:{color:'#9B59B6',bg:'#1a0d2e',border:'#3a1a5a'},other:{color:'#999',bg:'#111',border:'#2a2a2a'}};
 let activeCrmRole='broker';
 function selectCrmRole(r,btn){activeCrmRole=r;document.querySelectorAll('.crm-role-btn').forEach(b=>{b.style.background='none';b.style.color='var(--muted)';});if(btn){const s=CRM_STYLES[r];btn.style.background=s.bg;btn.style.color=s.color;}}
 function addCrmContact(){
@@ -3095,7 +3396,7 @@ function loadOffers(){renderOffers(JSON.parse(localStorage.getItem('cre_offers')
 // ── CRE: Update loadCreTab ────────────────────────────────────────────────
 // ── Push to GitHub ────────────────────────────────────────────────────────
 function copyPushCmd(){
-  const cmd=`cd ~/Desktop/-/CLAUDE/CHAT/DASH && git add Arc_Dashboard_iOS.html index.html && git commit -m "Arc Dashboard update" && git push`;
+  const cmd=`cd ~/Desktop/-/CLAUDE/DASH && git add Arc_Dashboard_iOS.html index.html && git commit -m "Arc Dashboard update" && git push`;
   const btn=document.getElementById('push-btn');
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(cmd).then(()=>{if(btn){btn.textContent='Copied ✓';setTimeout(()=>{btn.textContent='Terminal ↗';},2000);}});
@@ -3103,6 +3404,408 @@ function copyPushCmd(){
     const ta=document.createElement('textarea');ta.value=cmd;ta.style.cssText='position:fixed;opacity:0;';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
     if(btn){btn.textContent='Copied ✓';setTimeout(()=>{btn.textContent='Terminal ↗';},2000);}
   }
+}
+
+// ── LFRO ──────────────────────────────────────────────────────────────────
+
+// -- Calc --
+var lcType = 'rre';
+var lcAgentPct = 3;
+var lcRefPct = 25;
+var lcPRMode = 'auto';
+
+function lcSetAgent(val, btn) {
+  document.querySelectorAll('[onclick^="lcSetAgent"]').forEach(function(b){ b.style.background='none'; b.style.color='var(--text)'; });
+  if (btn) { btn.style.background='var(--dim)'; btn.style.color='var(--text)'; }
+  var inp = document.getElementById('lc-agent-pct');
+  var lbl = document.getElementById('lc-agent-lbl');
+  if (val !== null) { lcAgentPct = val; if(inp)inp.value=val; if(lbl)lbl.textContent=val+'%'; }
+  lfroCalc();
+}
+function lcSetRef(val, btn) {
+  document.querySelectorAll('[onclick^="lcSetRef"]').forEach(function(b){ b.style.background='none'; b.style.color='var(--text)'; });
+  if (btn) { btn.style.background='var(--dim)'; btn.style.color='var(--text)'; }
+  var inp = document.getElementById('lc-ref-pct');
+  var lbl = document.getElementById('lc-ref-lbl');
+  if (val !== null) { lcRefPct = val; if(inp)inp.value=val; if(lbl)lbl.textContent=val+'%'; }
+  lfroCalc();
+}
+function lcSetPR(mode, btn) {
+  lcPRMode = mode;
+  document.querySelectorAll('[onclick^="lcSetPR"]').forEach(function(b){ b.style.background='none'; b.style.color='var(--text)'; });
+  if (btn) { btn.style.background='var(--dim)'; btn.style.color='var(--text)'; }
+  lfroCalc();
+}
+function lfroQuick(price, agentPct, refPct) {
+  var p=document.getElementById('lc-price');
+  var a=document.getElementById('lc-agent-pct');
+  var r=document.getElementById('lc-ref-pct');
+  if(p)p.value=price;
+  if(a)a.value=agentPct;
+  if(r)r.value=refPct;
+  lfroCalc();
+}
+function lfroCalc() {
+  var price     = parseFloat((document.getElementById('lc-price')||{}).value)||0;
+  var agentPct  = parseFloat((document.getElementById('lc-agent-pct')||{}).value)||3;
+  var refPct    = parseFloat((document.getElementById('lc-ref-pct')||{}).value)||25;
+  var res       = document.getElementById('lc-results');
+  if (!price || !res) return;
+
+  // Step 1: Agent's total commission
+  var agentComm = price * (agentPct / 100);
+
+  // Step 2: My gross referral = % of agent's commission
+  var grossRef = agentComm * (refPct / 100);
+
+  // Step 3: P&R fee
+  var prFee;
+  var prLabel;
+  if (lcPRMode === 'auto') {
+    if (grossRef > 3600)      { prFee = grossRef * 0.09; prLabel = '9% auto'; }
+    else if (grossRef > 1300) { prFee = 325;              prLabel = '$325 flat auto'; }
+    else                       { prFee = grossRef * 0.25;  prLabel = '25% auto'; }
+  } else if (lcPRMode === 'pct9')   { prFee = grossRef * 0.09; prLabel = '9%'; }
+  else if (lcPRMode === 'flat325')  { prFee = 325;              prLabel = '$325 flat'; }
+  else if (lcPRMode === 'pct25')    { prFee = grossRef * 0.25;  prLabel = '25%'; }
+
+  var net = grossRef - prFee;
+  var fmt = function(n){ return '$'+Math.round(n).toLocaleString(); };
+
+  res.style.display = 'block';
+  res.innerHTML =
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">'
+    +'<div style="background:#0d0d0d;border:1px solid var(--border);border-radius:9px;padding:10px;text-align:center;">'
+    +'<div style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:4px;">Agent Comm</div>'
+    +'<div style="font-family:\'DM Mono\',monospace;font-size:14px;color:#D4A853;">'+fmt(agentComm)+'</div></div>'
+    +'<div style="background:#0d0d0d;border:1px solid var(--border);border-radius:9px;padding:10px;text-align:center;">'
+    +'<div style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:4px;">Gross Ref</div>'
+    +'<div style="font-family:\'DM Mono\',monospace;font-size:14px;color:#0D9488;">'+fmt(grossRef)+'</div></div>'
+    +'</div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">'
+    +'<div style="background:#0d0d0d;border:1px solid var(--border);border-radius:9px;padding:10px;text-align:center;">'
+    +'<div style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:4px;">P&R Fee <span style="color:#888;text-transform:none;">('+prLabel+')</span></div>'
+    +'<div style="font-family:\'DM Mono\',monospace;font-size:14px;color:#D4537E;">-'+fmt(prFee)+'</div></div>'
+    +'<div style="background:#111a09;border:1px solid #1a3a10;border-radius:9px;padding:10px;text-align:center;">'
+    +'<div style="font-family:\'DM Mono\',monospace;font-size:9px;color:#97C459;text-transform:uppercase;margin-bottom:4px;">Net to You</div>'
+    +'<div style="font-family:\'DM Mono\',monospace;font-size:18px;font-weight:500;color:#97C459;">'+fmt(net)+'</div></div>'
+    +'</div>';
+}
+
+// -- Pipeline --
+var lpDeal = 'RRE';
+var lpDealColors = {RRE:'#D4A853',CRE:'#378ADD',Builder:'#639922',BizOpp:'#F97316'};
+var lpStages = ['Lead','Referred','Active','Under Contract','Closed','Paid'];
+var lpStageColors = {'Lead':'#555','Referred':'#378ADD','Active':'#BA7517','Under Contract':'#D4A853','Closed':'#9B59B6','Paid':'#639922'};
+
+function lpSetDeal(t, btn) {
+  lpDeal = t;
+  document.querySelectorAll('.lp-deal-btn').forEach(function(b){ b.style.background='none'; b.style.color='var(--muted)'; });
+  if (btn) { btn.style.background='#1a1307'; btn.style.color=lpDealColors[t]||'#D4A853'; }
+}
+function lpAdd() {
+  var name  = ((document.getElementById('lp-name')||{}).value||'').trim();
+  var agent = ((document.getElementById('lp-agent')||{}).value||'').trim();
+  var price = parseFloat((document.getElementById('lp-price')||{}).value)||0;
+  var close = ((document.getElementById('lp-close')||{}).value||'').trim();
+  if (!name) return;
+  var refs = JSON.parse(localStorage.getItem('lx_pipeline')||'[]');
+  refs.unshift({id:Date.now(),name:name,agent:agent,deal:lpDeal,price:price,close:close,stage:'Lead'});
+  localStorage.setItem('lx_pipeline',JSON.stringify(refs));
+  ['lp-name','lp-agent','lp-price','lp-close'].forEach(function(id){ var el=document.getElementById(id); if(el)el.value=''; });
+  lpRender();
+}
+function lpAdvance(id) {
+  var refs = JSON.parse(localStorage.getItem('lx_pipeline')||'[]');
+  var r = refs.find(function(x){return x.id===id;});
+  if (!r) return;
+  var i = lpStages.indexOf(r.stage);
+  if (i < lpStages.length-1) r.stage = lpStages[i+1];
+  localStorage.setItem('lx_pipeline',JSON.stringify(refs));
+  lpRender();
+}
+function lpDelete(id) {
+  var refs = JSON.parse(localStorage.getItem('lx_pipeline')||'[]').filter(function(x){return x.id!==id;});
+  localStorage.setItem('lx_pipeline',JSON.stringify(refs));
+  lpRender();
+}
+function lpRender() {
+  var list  = document.getElementById('lp-list');
+  var empty = document.getElementById('lp-empty');
+  var count = document.getElementById('lp-count');
+  if (!list) return;
+  var refs = JSON.parse(localStorage.getItem('lx_pipeline')||'[]');
+  if (count) count.textContent = refs.length+' active';
+  list.innerHTML = '';
+  if (!refs.length) { if(empty)empty.style.display='block'; return; }
+  if (empty) empty.style.display='none';
+  refs.forEach(function(r) {
+    var dc = lpDealColors[r.deal]||'#D4A853';
+    var sc = lpStageColors[r.stage]||'#555';
+    var el = document.createElement('div');
+    el.style.cssText = 'background:var(--surface);border:1px solid var(--border);border-left:3px solid '+dc+';border-radius:10px;padding:10px 12px;margin-bottom:6px;';
+    el.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">'
+      +'<div><div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px;">'+r.name+'</div>'
+      +(r.agent?'<div style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);">→ '+r.agent+'</div>':'')+'</div>'
+      +'<button onclick="lpDelete('+r.id+')" style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);background:none;border:none;cursor:pointer;">✕</button></div>'
+      +'<div style="display:flex;gap:6px;align-items:center;">'
+      +'<span style="font-family:\'DM Mono\',monospace;font-size:9px;padding:2px 8px;border-radius:20px;background:#0a0a0a;color:'+dc+';border:1px solid #2a2a2a;text-transform:uppercase;">'+r.deal+'</span>'
+      +'<span style="font-family:\'DM Mono\',monospace;font-size:9px;padding:2px 8px;border-radius:20px;background:#0a0a0a;color:'+sc+';border:1px solid #2a2a2a;text-transform:uppercase;">'+r.stage+'</span>'
+      +(r.price?'<span style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);">$'+Math.round(r.price).toLocaleString()+'</span>':'')
+      +(r.stage!=='Paid'?'<button onclick="lpAdvance('+r.id+')" style="font-family:\'DM Mono\',monospace;font-size:9px;color:#D4A853;background:none;border:1px solid #3a2e10;border-radius:6px;padding:3px 8px;cursor:pointer;-webkit-appearance:none;margin-left:auto;text-transform:uppercase;">Advance</button>':'')
+      +'</div>';
+    list.appendChild(el);
+  });
+}
+
+// -- Network --
+var lnCat = 'Buyer';
+var lnCatColors = {Buyer:'#D4A853',Seller:'#378ADD',Agent:'#639922',Lender:'#9B59B6',Builder:'#97C459',Investor:'#D4537E',BayArea:'#BA7517',Broker:'#F97316',BizBuyer:'#0D9488',BizSeller:'#E879A0'};
+
+function lnSetCat(cat, btn) {
+  lnCat = cat;
+  document.querySelectorAll('.ln-cat-btn').forEach(function(b){ b.style.background='none'; b.style.color='var(--text)'; });
+  if (btn) { btn.style.background='var(--dim)'; btn.style.color='var(--text)'; }
+}
+function lnAdd() {
+  var name  = ((document.getElementById('ln-name')||{}).value||'').trim();
+  var phone = ((document.getElementById('ln-phone')||{}).value||'').trim();
+  var notes = ((document.getElementById('ln-notes')||{}).value||'').trim();
+  if (!name) return;
+  var contacts = JSON.parse(localStorage.getItem('lx_network')||'[]');
+  contacts.unshift({id:Date.now(),name:name,phone:phone,cat:lnCat,notes:notes,lastTouch:''});
+  localStorage.setItem('lx_network',JSON.stringify(contacts));
+  ['ln-name','ln-phone','ln-notes'].forEach(function(id){ var el=document.getElementById(id); if(el)el.value=''; });
+  lnRender();
+}
+function lnTouch(id) {
+  var contacts = JSON.parse(localStorage.getItem('lx_network')||'[]');
+  var c = contacts.find(function(x){return x.id===id;});
+  if (!c) return;
+  var now=getPT(); c.lastTouch=(now.getMonth()+1)+'/'+now.getDate()+'/'+now.getFullYear();
+  localStorage.setItem('lx_network',JSON.stringify(contacts));
+  lnRender();
+}
+function lnDelete(id) {
+  var contacts = JSON.parse(localStorage.getItem('lx_network')||'[]').filter(function(c){return c.id!==id;});
+  localStorage.setItem('lx_network',JSON.stringify(contacts));
+  lnRender();
+}
+function lnRender() {
+  var list  = document.getElementById('ln-list');
+  var empty = document.getElementById('ln-empty');
+  var search= document.getElementById('ln-search');
+  if (!list) return;
+  var contacts = JSON.parse(localStorage.getItem('lx_network')||'[]');
+  if (search && search.value.trim()) { var q=search.value.toLowerCase(); contacts=contacts.filter(function(c){return (c.name+c.cat+c.notes).toLowerCase().indexOf(q)>=0;}); }
+  list.innerHTML='';
+  if (!contacts.length) { if(empty)empty.style.display='block'; return; }
+  if (empty) empty.style.display='none';
+  contacts.forEach(function(c) {
+    var col = lnCatColors[c.cat]||'#555';
+    var el = document.createElement('div');
+    el.style.cssText='background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:6px;';
+    el.innerHTML='<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">'
+      +'<div style="flex:1;"><div style="display:flex;align-items:center;gap:7px;margin-bottom:3px;">'
+      +'<span style="font-size:13px;font-weight:500;color:var(--text);">'+c.name+'</span>'
+      +'<span style="font-family:\'DM Mono\',monospace;font-size:9px;padding:2px 7px;border-radius:20px;background:#0a0a0a;color:'+col+';border:1px solid #2a2a2a;text-transform:uppercase;">'+c.cat+'</span>'
+      +'</div>'+(c.notes?'<div style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);">'+c.notes+'</div>':'')+'</div>'
+      +'<button onclick="lnDelete('+c.id+')" style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);background:none;border:none;cursor:pointer;">✕</button></div>'
+      +'<div style="display:flex;gap:6px;align-items:center;">'
+      +(c.phone?'<a href="tel:'+c.phone+'" style="font-family:\'DM Mono\',monospace;font-size:9px;color:#378ADD;background:#0d1a2a;border:1px solid #1a2e40;border-radius:6px;padding:4px 10px;text-decoration:none;text-transform:uppercase;">Call</a>':'')
+      +'<button onclick="lnTouch('+c.id+')" style="font-family:\'DM Mono\',monospace;font-size:9px;color:#D4A853;background:none;border:1px solid #3a2e10;border-radius:6px;padding:4px 10px;cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">Log Touch</button>'
+      +'<span style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);margin-left:auto;">'+(c.lastTouch?'Last: '+c.lastTouch:'Never')+'</span>'
+      +'</div>';
+    list.appendChild(el);
+  });
+}
+
+// -- Builders --
+var lbDefault = [
+  {id:1,name:'DR Horton',coop:'3%',community:'Various Roseville/Elk Grove',notes:'Largest US builder. Check current incentives.',sm:''},
+  {id:2,name:'Lennar',coop:'3%',community:'Various Roseville/Rocklin',notes:'Closing cost incentives common. Check monthly.',sm:''},
+  {id:3,name:'Pulte Homes',coop:'3%',community:'Roseville / Lincoln',notes:'Rate buydowns offered. Del Webb 55+ community.',sm:''},
+  {id:4,name:'Taylor Morrison',coop:'3%',community:'Folsom / El Dorado Hills',notes:'High-end product. Good co-op track record.',sm:''},
+  {id:5,name:'Woodside Homes',coop:'3%',community:'Roseville / Natomas',notes:'NorCal regional. Confirm co-op per community.',sm:''},
+  {id:6,name:'JMC Homes',coop:'3%',community:'Placer County',notes:'Local builder. Call to confirm co-op.',sm:''},
+  {id:7,name:'Shea Homes',coop:'3%',community:'Lincoln / Roseville',notes:'Quality product. Active 55+ and family communities.',sm:''},
+  {id:8,name:'KB Home',coop:'3%',community:'Sacramento region',notes:'Buyer-customizable. Confirm co-op at each site.',sm:''},
+];
+function lbSave(id, val) {
+  var builders = JSON.parse(localStorage.getItem('lx_builders')||JSON.stringify(lbDefault));
+  var b = builders.find(function(x){return x.id===id;});
+  if (b) { b.sm=val; localStorage.setItem('lx_builders',JSON.stringify(builders)); }
+}
+function lbRender() {
+  var list = document.getElementById('lb-list');
+  if (!list) return;
+  var builders = JSON.parse(localStorage.getItem('lx_builders')||JSON.stringify(lbDefault));
+  list.innerHTML='';
+  builders.forEach(function(b) {
+    var el=document.createElement('div');
+    el.style.cssText='background:var(--surface);border:1px solid var(--border);border-left:3px solid #639922;border-radius:10px;padding:11px 13px;margin-bottom:7px;';
+    el.innerHTML='<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">'
+      +'<div><div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px;">'+b.name+'</div>'
+      +'<div style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);">'+b.community+'</div></div>'
+      +'<span style="font-family:\'DM Mono\',monospace;font-size:11px;color:#639922;background:#111a09;border:1px solid #1a3a10;border-radius:20px;padding:3px 10px;">'+b.coop+' co-op</span></div>'
+      +'<div style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);margin-bottom:8px;">'+b.notes+'</div>'
+      +'<input placeholder="Sales mgr / notes..." value="'+(b.sm||'')+'" maxlength="60" oninput="lbSave('+b.id+',this.value)" style="width:100%;background:#0a0a0a;border:1px solid var(--border);border-radius:6px;padding:5px 8px;font-family:\'DM Mono\',monospace;font-size:10px;color:var(--text);outline:none;caret-color:#D4A853;"/>';
+    list.appendChild(el);
+  });
+}
+
+// -- Business Brokers --
+function lbbAdd() {
+  var name  = ((document.getElementById('lbb-name')||{}).value||'').trim();
+  var firm  = ((document.getElementById('lbb-firm')||{}).value||'').trim();
+  var phone = ((document.getElementById('lbb-phone')||{}).value||'').trim();
+  var pct   = ((document.getElementById('lbb-pct')||{}).value||'').trim();
+  var notes = ((document.getElementById('lbb-notes')||{}).value||'').trim();
+  if (!name) return;
+  var brokers = JSON.parse(localStorage.getItem('lx_bizbrokers')||'[]');
+  brokers.unshift({id:Date.now(),name:name,firm:firm,phone:phone,pct:pct,notes:notes,lastTouch:''});
+  localStorage.setItem('lx_bizbrokers',JSON.stringify(brokers));
+  ['lbb-name','lbb-firm','lbb-phone','lbb-pct','lbb-notes'].forEach(function(id){ var el=document.getElementById(id); if(el)el.value=''; });
+  lbbRender();
+}
+function lbbTouch(id) {
+  var brokers = JSON.parse(localStorage.getItem('lx_bizbrokers')||'[]');
+  var b = brokers.find(function(x){return x.id===id;});
+  if (!b) return;
+  var now=getPT(); b.lastTouch=(now.getMonth()+1)+'/'+now.getDate()+'/'+now.getFullYear();
+  localStorage.setItem('lx_bizbrokers',JSON.stringify(brokers));
+  lbbRender();
+}
+function lbbDelete(id) {
+  var brokers = JSON.parse(localStorage.getItem('lx_bizbrokers')||'[]').filter(function(x){return x.id!==id;});
+  localStorage.setItem('lx_bizbrokers',JSON.stringify(brokers));
+  lbbRender();
+}
+function lbbRender() {
+  var list  = document.getElementById('lbb-list');
+  var empty = document.getElementById('lbb-empty');
+  if (!list) return;
+  var brokers = JSON.parse(localStorage.getItem('lx_bizbrokers')||'[]');
+  list.innerHTML='';
+  if (!brokers.length) { if(empty)empty.style.display='block'; return; }
+  if (empty) empty.style.display='none';
+  brokers.forEach(function(b) {
+    var el=document.createElement('div');
+    el.style.cssText='background:var(--surface);border:1px solid var(--border);border-left:3px solid #F97316;border-radius:10px;padding:10px 12px;margin-bottom:6px;';
+    el.innerHTML='<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">'
+      +'<div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px;">'+b.name+'</div>'
+      +(b.firm?'<div style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);">'+b.firm+(b.pct?' · '+b.pct+'% ref fee':'')+'</div>':'')
+      +(b.notes?'<div style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);margin-top:2px;">'+b.notes+'</div>':'')+'</div>'
+      +'<button onclick="lbbDelete('+b.id+')" style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);background:none;border:none;cursor:pointer;">✕</button></div>'
+      +'<div style="display:flex;gap:6px;align-items:center;">'
+      +(b.phone?'<a href="tel:'+b.phone+'" style="font-family:\'DM Mono\',monospace;font-size:9px;color:#378ADD;background:#0d1a2a;border:1px solid #1a2e40;border-radius:6px;padding:4px 10px;text-decoration:none;text-transform:uppercase;">Call</a>':'')
+      +'<button onclick="lbbTouch('+b.id+')" style="font-family:\'DM Mono\',monospace;font-size:9px;color:#D4A853;background:none;border:1px solid #3a2e10;border-radius:6px;padding:4px 10px;cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">Log Touch</button>'
+      +'<span style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);margin-left:auto;">'+(b.lastTouch?'Last: '+b.lastTouch:'Never')+'</span>'
+      +'</div>';
+    list.appendChild(el);
+  });
+}
+
+// -- Intel --
+function liSave() {
+  var b=document.getElementById('li-builders'), n=document.getElementById('li-notes');
+  if(b)localStorage.setItem('lx_intel_builders',b.value);
+  if(n)localStorage.setItem('lx_intel_notes',n.value);
+}
+function liLoad() {
+  var b=document.getElementById('li-builders'), n=document.getElementById('li-notes');
+  if(b)b.value=localStorage.getItem('lx_intel_builders')||'';
+  if(n)n.value=localStorage.getItem('lx_intel_notes')||'';
+}
+
+// -- 1908EX Daily Habits --
+var exHabitColors = {h1:{bg:'#0d1a2a',border:'#378ADD',text:'#378ADD'}, h2:{bg:'#1f0d16',border:'#D4537E',text:'#D4537E'}, h3:{bg:'#111a09',border:'#639922',text:'#639922'}};
+function toggleExHabit(key) {
+  var today = todayKey();
+  var stored = JSON.parse(localStorage.getItem('ex_habits_'+today)||'{}');
+  stored[key] = !stored[key];
+  localStorage.setItem('ex_habits_'+today, JSON.stringify(stored));
+  renderExHabits();
+}
+function resetExHabits() {
+  localStorage.removeItem('ex_habits_'+todayKey());
+  renderExHabits();
+}
+function renderExHabits() {
+  var today = todayKey();
+  var stored = JSON.parse(localStorage.getItem('ex_habits_'+today)||'{}');
+  var keys = ['h1','h2','h3'];
+  keys.forEach(function(key, i) {
+    var num = i+1;
+    var btn = document.getElementById('ex-habit-'+num);
+    var streak = document.getElementById('ex-streak-'+num);
+    var nameEl = document.getElementById('ex-habit-'+num+'-name');
+    if (!btn) return;
+    var done = !!stored[key];
+    var col = exHabitColors[key];
+    if (done) {
+      btn.style.background = col.bg;
+      btn.style.borderColor = col.border;
+      if(nameEl) nameEl.style.color = col.text;
+      if(streak) streak.style.color = col.text;
+    } else {
+      btn.style.background = 'var(--surface)';
+      btn.style.borderColor = 'var(--border)';
+      if(nameEl) nameEl.style.color = 'var(--muted)';
+      if(streak) streak.style.color = 'var(--muted)';
+    }
+    var s = 0, d = new Date(getPT());
+    while(true) {
+      var k = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+      var dd = JSON.parse(localStorage.getItem('ex_habits_'+k)||'{}');
+      if (dd[key]) { s++; d.setDate(d.getDate()-1); } else break;
+    }
+    if (streak) streak.textContent = s+'d';
+  });
+}
+
+// -- Intel resets --
+function liReset() {
+  localStorage.removeItem('lx_intel_builders');
+  localStorage.removeItem('lx_intel_notes');
+  var b=document.getElementById('li-builders'), n=document.getElementById('li-notes');
+  if(b)b.value=''; if(n)n.value='';
+}
+// -- Calc reset --
+function lcReset() {
+  var p=document.getElementById('lc-price'), a=document.getElementById('lc-agent-pct'), r=document.getElementById('lc-ref-pct'), res=document.getElementById('lc-results');
+  if(p)p.value=''; if(a)a.value=3; if(r)r.value=25; if(res)res.style.display='none';
+  var lbl=document.getElementById('lc-agent-lbl'); if(lbl)lbl.textContent='3%';
+  var rlbl=document.getElementById('lc-ref-lbl'); if(rlbl)rlbl.textContent='25%';
+}
+// -- Network reset --
+function lnReset() {
+  if(!confirm('Clear all network contacts?')) return;
+  localStorage.removeItem('lx_network');
+  lnRender();
+}
+// -- Builders reset --
+function lbReset() {
+  localStorage.removeItem('lx_builders');
+  localStorage.removeItem('lx_intel_builders');
+  var b=document.getElementById('li-builders'); if(b)b.value='';
+  lbRender();
+}
+// -- Brokers reset --
+function lbbReset() {
+  if(!confirm('Clear all brokers?')) return;
+  localStorage.removeItem('lx_bizbrokers');
+  lbbRender();
+}
+
+// -- Tab Load --
+function loadLfroTab() {
+  renderExHabits();
+  liLoad();
+  lpRender();
+  lnRender();
+  lbRender();
+  lbbRender();
 }
 
 // INIT
