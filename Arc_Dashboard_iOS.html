@@ -3822,6 +3822,17 @@ loadGrowTab();
 initAlarms();updateAlarmBtn();
 syncPull(true);
 setInterval(syncPull,5*60*1000);
+
+// Hide push/terminal buttons on iPhone (PWA standalone or mobile viewport)
+(function(){
+  const isMobile = navigator.standalone || /iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 768;
+  if(isMobile){
+    ['push-btn','terminal-btn'].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el){ el.style.display='none'; el.closest && el.closest('[id$="-wrap"]') && (el.closest('[id$="-wrap"]').style.display='none'); }
+    });
+  }
+})();
 </script>
 </body>
 </html>
