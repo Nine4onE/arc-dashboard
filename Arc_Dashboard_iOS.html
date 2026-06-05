@@ -3098,6 +3098,13 @@ collectLocalData = function() {
   });
   data.cre_habits = creHabits;
   data.grow_trays = JSON.parse(localStorage.getItem('grow_trays')||'[]');
+  // Collect all grow task check states
+  const growTasks = {};
+  for(let i=0;i<localStorage.length;i++){
+    const k=localStorage.key(i);
+    if(k&&k.startsWith('grow_task_'))growTasks[k]=localStorage.getItem(k);
+  }
+  data.grow_tasks = growTasks;
   return data;
 };
 
@@ -3119,6 +3126,7 @@ applyRemoteData = function(data) {
     });
   }
   if (data.grow_trays) { localStorage.setItem('grow_trays', JSON.stringify(data.grow_trays)); renderGrowTrays(); }
+  if (data.grow_tasks) { Object.keys(data.grow_tasks).forEach(k=>{ if(k.startsWith('grow_task_'))localStorage.setItem(k,data.grow_tasks[k]); }); renderGrowTrays(); }
 };
 
 // ── CRE: Collapse Toggle ──────────────────────────────────────────────────
