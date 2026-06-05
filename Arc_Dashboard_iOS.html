@@ -206,7 +206,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
 <div class="header">
   <div class="logo"><span class="live-dot"></span><span>Arc</span></div>
   <div style="display:flex;align-items:center;gap:8px;">
-    <div style="display:flex;align-items:center;gap:4px;cursor:pointer;" id="sync-status-wrap" title="Tap to sync" onclick="syncPull()">
+    <div style="display:flex;align-items:center;gap:4px;cursor:pointer;" id="sync-status-wrap" title="Tap to sync" onclick="syncOrSetup()">
       <div id="sync-dot" style="width:6px;height:6px;border-radius:50%;background:var(--muted);transition:background 0.3s;"></div>
       <span id="sync-label" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">sync</span>
     </div>
@@ -1129,16 +1129,16 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
 </div>
 
 <!-- Sync setup modal -->
-<div id="sync-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:999;padding:24px;align-items:center;justify-content:center;">
-  <div style="background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:20px;width:100%;max-width:360px;">
+<div id="sync-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:99999;padding:24px;align-items:center;justify-content:center;-webkit-overflow-scrolling:touch;">
+  <div style="background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:20px;width:100%;max-width:360px;position:relative;z-index:100000;">
     <div style="font-family:'DM Mono',monospace;font-size:11px;color:#9B59B6;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">JSONBin Sync Setup</div>
     <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;">Bin ID</div>
-    <input id="setup-bin-id" placeholder="6643f1e7..." style="width:100%;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:9px 12px;font-family:'DM Mono',monospace;font-size:12px;color:#f0f0f0;outline:none;margin-bottom:10px;"/>
+    <input id="setup-bin-id" placeholder="6643f1e7..." autocomplete="off" autocorrect="off" autocapitalize="off" style="width:100%;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:9px 12px;font-family:'DM Mono',monospace;font-size:16px;color:#f0f0f0;outline:none;margin-bottom:10px;-webkit-appearance:none;"/>
     <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;">Master Key</div>
-    <input id="setup-api-key" placeholder="$2b$10$..." type="password" style="width:100%;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:9px 12px;font-family:'DM Mono',monospace;font-size:12px;color:#f0f0f0;outline:none;margin-bottom:16px;"/>
+    <input id="setup-api-key" placeholder="$2b$10$..." type="text" autocomplete="off" autocorrect="off" autocapitalize="off" style="width:100%;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:9px 12px;font-family:'DM Mono',monospace;font-size:16px;color:#f0f0f0;outline:none;margin-bottom:16px;-webkit-appearance:none;"/>
     <div style="display:flex;gap:8px;">
-      <button onclick="saveSyncSetup()" style="flex:1;font-family:'DM Mono',monospace;font-size:11px;color:#fff;background:#9B59B6;border:none;border-radius:8px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;">Save</button>
-      <button onclick="document.getElementById('sync-modal').style.display='none'" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);background:none;border:1px solid #2a2a2a;border-radius:8px;padding:10px 16px;cursor:pointer;text-transform:uppercase;">Cancel</button>
+      <button onclick="saveSyncSetup()" style="flex:1;font-family:'DM Mono',monospace;font-size:11px;color:#fff;background:#9B59B6;border:none;border-radius:8px;padding:14px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;">Save</button>
+      <button onclick="document.getElementById('sync-modal').style.display='none'" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);background:none;border:1px solid #2a2a2a;border-radius:8px;padding:14px 16px;cursor:pointer;text-transform:uppercase;-webkit-appearance:none;">Cancel</button>
     </div>
   </div>
 </div>
@@ -2034,9 +2034,13 @@ function loadGrowTab() {
 }
 
 // ── JSONBIN SYNC ──────────────────────────────────────────────────────────
-const JSONBIN_BIN_ID  = localStorage.getItem('arc_bin_id')  || '';
-const JSONBIN_API_KEY = localStorage.getItem('arc_api_key') || '';
-const JSONBIN_BASE_URL= `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+function getJSONBinId()  { return localStorage.getItem('arc_bin_id')  || ''; }
+function getJSONBinKey() { return localStorage.getItem('arc_api_key') || ''; }
+function getJSONBinURL() { return 'https://api.jsonbin.io/v3/b/' + getJSONBinId(); }
+// Legacy aliases for inline checks
+Object.defineProperty(window,'JSONBIN_BIN_ID',{get:getJSONBinId});
+Object.defineProperty(window,'JSONBIN_API_KEY',{get:getJSONBinKey});
+Object.defineProperty(window,'JSONBIN_BASE_URL',{get:getJSONBinURL});
 let syncTimer=null;
 
 function setSyncStatus(state){
@@ -2100,7 +2104,7 @@ function syncPush(){
   },1500);
 }
 
-async function syncPull(){
+async function syncPull(forceApply){
   if(!JSONBIN_BIN_ID||!JSONBIN_API_KEY){setSyncStatus('setup');return;}
   setSyncStatus('syncing');
   try{
@@ -2109,7 +2113,11 @@ async function syncPull(){
     const json=await res.json();const remote=json.record;
     const localUpdated=new Date(JSON.parse(localStorage.getItem('arc_last_updated')||'"2000-01-01"'));
     const remoteUpdated=remote._updated?new Date(remote._updated):new Date('2000-01-01');
-    if(remoteUpdated>localUpdated){applyRemoteData(remote);localStorage.setItem('arc_last_updated',JSON.stringify(remote._updated));loadHabits();loadMITs();loadTasks();loadWater();loadReview();}
+    if(forceApply||remoteUpdated>localUpdated){
+      applyRemoteData(remote);
+      localStorage.setItem('arc_last_updated',JSON.stringify(remote._updated||new Date().toISOString()));
+      loadHabits();loadMITs();loadTasks();loadWater();loadReview();renderGrowTrays();
+    }
     setSyncStatus('ok');setTimeout(()=>setSyncStatus('idle'),3000);
   }catch(e){setSyncStatus('error');}
 }
@@ -2117,10 +2125,11 @@ async function syncPull(){
 window.arcSetup=function(binId,apiKey){localStorage.setItem('arc_bin_id',binId);localStorage.setItem('arc_api_key',apiKey);location.reload();};
 
 function copyTerminal(){
-  const cmd=`cd ~/Desktop/-/CLAUDE/DASH && git add Arc_Dashboard_iOS.html index.html && git commit -m "Arc Dashboard update" && git push`;
+  const cmd=`cd ~/Desktop/-/CLAUDE/DASH && cp ~/Library/Mobile\ Documents/com~apple~CloudDocs/Arc_Dashboard_iOS.html . && cp Arc_Dashboard_iOS.html index.html && git add Arc_Dashboard_iOS.html index.html && git commit -m "Arc Dashboard update" && git push`;
   navigator.clipboard.writeText(cmd).then(()=>{const btn=document.getElementById('terminal-btn');if(!btn)return;const orig=btn.textContent;btn.textContent='Copied!';btn.style.borderColor='#97C459';btn.style.color='#97C459';setTimeout(()=>{btn.textContent=orig;btn.style.borderColor='#639922';btn.style.color='#639922';},2000);}).catch(()=>{const ta=document.createElement('textarea');ta.value=cmd;ta.style.cssText='position:fixed;opacity:0;';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);const btn=document.getElementById('terminal-btn');if(btn){btn.textContent='Copied!';setTimeout(()=>btn.textContent='Terminal',2000);}});
 }
 
+function syncOrSetup(){const b=localStorage.getItem('arc_bin_id');const k=localStorage.getItem('arc_api_key');if(b&&k){syncPull(true);}else{showSyncSetup();}}
 function showSyncSetup(){const modal=document.getElementById('sync-modal');modal.style.display='flex';const binId=localStorage.getItem('arc_bin_id')||'';document.getElementById('setup-bin-id').value=binId;}
 function saveSyncSetup(){const binId=document.getElementById('setup-bin-id').value.trim();const apiKey=document.getElementById('setup-api-key').value.trim();if(!binId||!apiKey){alert('Both fields required');return;}localStorage.setItem('arc_bin_id',binId);localStorage.setItem('arc_api_key',apiKey);document.getElementById('sync-modal').style.display='none';location.reload();}
 
@@ -3088,6 +3097,7 @@ collectLocalData = function() {
     creHabits[h] = { state: JSON.parse(localStorage.getItem('cre_habit_'+h)||'{}'), streak: parseInt(localStorage.getItem('cre_streak_'+h)||'0') };
   });
   data.cre_habits = creHabits;
+  data.grow_trays = JSON.parse(localStorage.getItem('grow_trays')||'[]');
   return data;
 };
 
@@ -3108,6 +3118,7 @@ applyRemoteData = function(data) {
       if (data.cre_habits[h].streak !== undefined) localStorage.setItem('cre_streak_'+h, String(data.cre_habits[h].streak));
     });
   }
+  if (data.grow_trays) { localStorage.setItem('grow_trays', JSON.stringify(data.grow_trays)); renderGrowTrays(); }
 };
 
 // ── CRE: Collapse Toggle ──────────────────────────────────────────────────
@@ -3396,7 +3407,7 @@ function loadOffers(){renderOffers(JSON.parse(localStorage.getItem('cre_offers')
 // ── CRE: Update loadCreTab ────────────────────────────────────────────────
 // ── Push to GitHub ────────────────────────────────────────────────────────
 function copyPushCmd(){
-  const cmd=`cd ~/Desktop/-/CLAUDE/DASH && git add Arc_Dashboard_iOS.html index.html && git commit -m "Arc Dashboard update" && git push`;
+  const cmd=`cd ~/Desktop/-/CLAUDE/DASH && cp ~/Library/Mobile\ Documents/com~apple~CloudDocs/Arc_Dashboard_iOS.html . && cp Arc_Dashboard_iOS.html index.html && git add Arc_Dashboard_iOS.html index.html && git commit -m "Arc Dashboard update" && git push`;
   const btn=document.getElementById('push-btn');
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(cmd).then(()=>{if(btn){btn.textContent='Copied ✓';setTimeout(()=>{btn.textContent='Terminal ↗';},2000);}});
@@ -3811,13 +3822,24 @@ function loadLfroTab() {
 // INIT
 tick();setInterval(tick,1000);
 loadDailyQuote();
-loadHabits();loadMITs();loadTasks();loadWater();loadReview();
+loadHabits();loadMITs();loadTasks();loadWater();loadReview();renderGrowTrays();
 pomoDraw();
 fetchWeather();setInterval(fetchWeather,600000);
 loadGrowTab();
 initAlarms();updateAlarmBtn();
-syncPull();
+syncPull(true);
 setInterval(syncPull,5*60*1000);
+
+// Hide push/terminal buttons on iPhone (PWA standalone or mobile viewport)
+(function(){
+  const isMobile = navigator.standalone || /iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 768;
+  if(isMobile){
+    ['push-btn','terminal-btn'].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el){ el.style.display='none'; el.closest && el.closest('[id$="-wrap"]') && (el.closest('[id$="-wrap"]').style.display='none'); }
+    });
+  }
+})();
 </script>
 </body>
 </html>
