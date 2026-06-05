@@ -206,7 +206,7 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
 <div class="header">
   <div class="logo"><span class="live-dot"></span><span>Arc</span></div>
   <div style="display:flex;align-items:center;gap:8px;">
-    <div style="display:flex;align-items:center;gap:4px;cursor:pointer;" id="sync-status-wrap" title="Tap to sync" onclick="syncPull()">
+    <div style="display:flex;align-items:center;gap:4px;cursor:pointer;" id="sync-status-wrap" title="Tap to sync" onclick="JSONBIN_BIN_ID&&JSONBIN_API_KEY?syncPull():showSyncSetup()">
       <div id="sync-dot" style="width:6px;height:6px;border-radius:50%;background:var(--muted);transition:background 0.3s;"></div>
       <span id="sync-label" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">sync</span>
     </div>
@@ -2034,9 +2034,13 @@ function loadGrowTab() {
 }
 
 // ── JSONBIN SYNC ──────────────────────────────────────────────────────────
-const JSONBIN_BIN_ID  = localStorage.getItem('arc_bin_id')  || '';
-const JSONBIN_API_KEY = localStorage.getItem('arc_api_key') || '';
-const JSONBIN_BASE_URL= `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+function getJSONBinId()  { return localStorage.getItem('arc_bin_id')  || ''; }
+function getJSONBinKey() { return localStorage.getItem('arc_api_key') || ''; }
+function getJSONBinURL() { return 'https://api.jsonbin.io/v3/b/' + getJSONBinId(); }
+// Legacy aliases for inline checks
+Object.defineProperty(window,'JSONBIN_BIN_ID',{get:getJSONBinId});
+Object.defineProperty(window,'JSONBIN_API_KEY',{get:getJSONBinKey});
+Object.defineProperty(window,'JSONBIN_BASE_URL',{get:getJSONBinURL});
 let syncTimer=null;
 
 function setSyncStatus(state){
