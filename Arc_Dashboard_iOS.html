@@ -1129,16 +1129,16 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans',sans-se
 </div>
 
 <!-- Sync setup modal -->
-<div id="sync-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:999;padding:24px;align-items:center;justify-content:center;">
-  <div style="background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:20px;width:100%;max-width:360px;">
+<div id="sync-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:99999;padding:24px;align-items:center;justify-content:center;-webkit-overflow-scrolling:touch;">
+  <div style="background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:20px;width:100%;max-width:360px;position:relative;z-index:100000;">
     <div style="font-family:'DM Mono',monospace;font-size:11px;color:#9B59B6;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">JSONBin Sync Setup</div>
     <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;">Bin ID</div>
-    <input id="setup-bin-id" placeholder="6643f1e7..." style="width:100%;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:9px 12px;font-family:'DM Mono',monospace;font-size:12px;color:#f0f0f0;outline:none;margin-bottom:10px;"/>
+    <input id="setup-bin-id" placeholder="6643f1e7..." autocomplete="off" autocorrect="off" autocapitalize="off" style="width:100%;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:9px 12px;font-family:'DM Mono',monospace;font-size:16px;color:#f0f0f0;outline:none;margin-bottom:10px;-webkit-appearance:none;"/>
     <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;">Master Key</div>
-    <input id="setup-api-key" placeholder="$2b$10$..." type="password" style="width:100%;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:9px 12px;font-family:'DM Mono',monospace;font-size:12px;color:#f0f0f0;outline:none;margin-bottom:16px;"/>
+    <input id="setup-api-key" placeholder="$2b$10$..." type="text" autocomplete="off" autocorrect="off" autocapitalize="off" style="width:100%;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:9px 12px;font-family:'DM Mono',monospace;font-size:16px;color:#f0f0f0;outline:none;margin-bottom:16px;-webkit-appearance:none;"/>
     <div style="display:flex;gap:8px;">
-      <button onclick="saveSyncSetup()" style="flex:1;font-family:'DM Mono',monospace;font-size:11px;color:#fff;background:#9B59B6;border:none;border-radius:8px;padding:10px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;">Save</button>
-      <button onclick="document.getElementById('sync-modal').style.display='none'" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);background:none;border:1px solid #2a2a2a;border-radius:8px;padding:10px 16px;cursor:pointer;text-transform:uppercase;">Cancel</button>
+      <button onclick="saveSyncSetup()" style="flex:1;font-family:'DM Mono',monospace;font-size:11px;color:#fff;background:#9B59B6;border:none;border-radius:8px;padding:14px;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;-webkit-appearance:none;">Save</button>
+      <button onclick="document.getElementById('sync-modal').style.display='none'" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);background:none;border:1px solid #2a2a2a;border-radius:8px;padding:14px 16px;cursor:pointer;text-transform:uppercase;-webkit-appearance:none;">Cancel</button>
     </div>
   </div>
 </div>
