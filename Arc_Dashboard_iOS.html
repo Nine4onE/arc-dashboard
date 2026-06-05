@@ -2117,7 +2117,7 @@ async function syncPull(){
 window.arcSetup=function(binId,apiKey){localStorage.setItem('arc_bin_id',binId);localStorage.setItem('arc_api_key',apiKey);location.reload();};
 
 function copyTerminal(){
-  const cmd=`cd ~/Desktop/-/CLAUDE/DASHBOARD && git add . && git commit -m "update" && git push origin main`;
+  const cmd=`cd ~/Desktop/-/CLAUDE/DASH && git add Arc_Dashboard_iOS.html index.html && git commit -m "Arc Dashboard update" && git push`;
   navigator.clipboard.writeText(cmd).then(()=>{const btn=document.getElementById('terminal-btn');if(!btn)return;const orig=btn.textContent;btn.textContent='Copied!';btn.style.borderColor='#97C459';btn.style.color='#97C459';setTimeout(()=>{btn.textContent=orig;btn.style.borderColor='#639922';btn.style.color='#639922';},2000);}).catch(()=>{const ta=document.createElement('textarea');ta.value=cmd;ta.style.cssText='position:fixed;opacity:0;';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);const btn=document.getElementById('terminal-btn');if(btn){btn.textContent='Copied!';setTimeout(()=>btn.textContent='Terminal',2000);}});
 }
 
@@ -3396,7 +3396,7 @@ function loadOffers(){renderOffers(JSON.parse(localStorage.getItem('cre_offers')
 // ── CRE: Update loadCreTab ────────────────────────────────────────────────
 // ── Push to GitHub ────────────────────────────────────────────────────────
 function copyPushCmd(){
-  const cmd=`cd ~/Desktop/-/CLAUDE/DASHBOARD && git add Arc_Dashboard_iOS.html index.html && git commit -m "Arc Dashboard update" && git push`;
+  const cmd=`cd ~/Desktop/-/CLAUDE/DASH && git add Arc_Dashboard_iOS.html index.html && git commit -m "Arc Dashboard update" && git push`;
   const btn=document.getElementById('push-btn');
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(cmd).then(()=>{if(btn){btn.textContent='Copied ✓';setTimeout(()=>{btn.textContent='Terminal ↗';},2000);}});
