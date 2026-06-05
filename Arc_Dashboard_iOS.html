@@ -1183,7 +1183,7 @@ const textColors={work:"#85B7EB",gym:"#97C459",admin:"#EF9F27",rest:"#AFA9EC",ve
 function toMins(t){const[h,m]=t.split(":").map(Number);return h*60+m;}
 function fmt12(t){const[h,m]=t.split(":").map(Number);return`${h%12||12}:${String(m).padStart(2,"0")} ${h>=12?"PM":"AM"}`;}
 function getPT(){return new Date(new Date().toLocaleString("en-US",{timeZone:"America/Los_Angeles"}));}
-function todayKey(){const n=getPT();return`${n.getFullYear()}-${n.getMonth()+1}-${n.getDate()}`;}
+function todayKey(){const n=getPT();return`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;}
 function getBlock(n){let c=schedule[0],x=schedule[1];for(let i=0;i<schedule.length;i++){if(toMins(schedule[i].time)<=n){c=schedule[i];x=schedule[i+1]||null;}}return{cur:c,nxt:x};}
 
 function showTab(name,btn){
