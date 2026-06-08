@@ -1182,7 +1182,11 @@ function syncPull(force){
     headers:{'X-Master-Key':creds.key}
   }).then(function(r){return r.json();})
   .then(function(d){
-    if(d&&d.record)applyRemoteData(d.record);
+    if(!d)return;
+    var rec=d.record||d;
+    // handle nested record.record
+    if(rec.record)rec=rec.record;
+    applyRemoteData(rec);
   }).catch(function(){});
 }
 
