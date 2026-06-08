@@ -1156,17 +1156,21 @@ function applyRemoteData(data){
   renderH();buildHeatmap();renderMITs();renderTasks();buildSched();buildWater();
 }
 
+var syncPushTimer=null;
 function syncPush(){
-  var creds=syncGetCreds();if(!creds.key)return;
-  var payload=collectLocalData();
-  fetch('https://api.jsonbin.io/v3/b/'+creds.bin,{
-    method:'PUT',
-    headers:{'Content-Type':'application/json','X-Master-Key':creds.key},
-    body:JSON.stringify({record:payload})
-  }).then(function(r){
-    var dot=document.querySelector('.live-dot');
-    if(dot){dot.style.background=r.ok?'#639922':'#E24B4A';setTimeout(function(){dot.style.background='#639922';},1200);}
-  }).catch(function(){});
+  if(syncPushTimer)clearTimeout(syncPushTimer);
+  syncPushTimer=setTimeout(function(){
+    var creds=syncGetCreds();if(!creds.key)return;
+    var payload=collectLocalData();
+    fetch('https://api.jsonbin.io/v3/b/'+creds.bin,{
+      method:'PUT',
+      headers:{'Content-Type':'application/json','X-Master-Key':creds.key},
+      body:JSON.stringify({record:payload})
+    }).then(function(r){
+      var dot=document.querySelector('.live-dot');
+      if(dot){dot.style.background=r.ok?'#639922':'#E24B4A';setTimeout(function(){dot.style.background='#639922';},1200);}
+    }).catch(function(){});
+  },2000);
 }
 
 function syncPull(force){
