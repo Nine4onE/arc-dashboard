@@ -255,7 +255,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
     <div class="quote-author" id="quote-author"></div>
     <div class="quote-actions">
       <button class="q-btn" id="q-save-btn" onclick="saveQuote()">Save</button>
-      <button class="q-btn" onclick="genQuote(true)">New</button>
+      <button class="q-btn" onclick="genQuote(true)">Next</button>
     </div>
     <div class="saved-list" id="saved-list"></div>
   </div>
@@ -1023,10 +1023,16 @@ function genQuote(force){
   if(!force&&stored){
     try{var q=JSON.parse(stored);showQuote(q.text,q.author);return;}catch(e){}
   }
-  // pick quote by day-of-year for consistency, rotate through full bank
   var now=new Date();
   var doy=Math.floor((now-(new Date(now.getFullYear(),0,0)))/86400000);
-  var idx=doy%QUOTES.length;
+  var baseIdx=doy%QUOTES.length;
+  var idx=baseIdx;
+  if(force){
+    // advance past today's quote — use a counter stored in localStorage
+    var nc=parseInt(localStorage.getItem('quote_new_ct')||'0')+1;
+    localStorage.setItem('quote_new_ct',nc);
+    idx=(baseIdx+nc)%QUOTES.length;
+  }
   var q=QUOTES[idx];
   currentQuote={text:q.t,author:q.a};
   localStorage.setItem(quoteKey,JSON.stringify(currentQuote));
