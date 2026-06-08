@@ -652,7 +652,7 @@ function saveMITs(){
     if(inp)d['t'+i]=inp.value;
     if(chk)d['c'+i]=chk.classList.contains('checked');
   }
-  localStorage.setItem('mits_'+todayKey(),JSON.stringify(d));
+  localStorage.setItem('mits_'+todayKey(),JSON.stringify(d));syncPush();
 }
 function toggleMIT(n,chkEl,itemEl){
   var d=JSON.parse(localStorage.getItem('mits_'+todayKey())||'{}');
@@ -705,7 +705,7 @@ function saveTasks(){
     d['t'+i]=inp.value;
     d['c'+i]=chk?chk.classList.contains('checked'):false;
   }
-  localStorage.setItem('tasks_'+todayKey(),JSON.stringify(d));syncPush();syncPush();
+  localStorage.setItem('tasks_'+todayKey(),JSON.stringify(d));syncPush();
 }
 function toggleTask(n,chkEl,itemEl){
   var d=JSON.parse(localStorage.getItem('tasks_'+todayKey())||'{}');
