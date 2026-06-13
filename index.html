@@ -222,7 +222,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 
 <div class="hdr">
   <div class="logo"><span class="live-dot"></span>Sumi <span>ARC</span></div>
-  <div style="display:flex;gap:8px;align-items:center;"><button onclick="syncOrSetup()" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);background:none;border:1px solid var(--border2);border-radius:4px;padding:3px 8px;cursor:pointer;-webkit-appearance:none;text-transform:uppercase;letter-spacing:.05em;">Sync</button><button id="push-btn" onclick="copyPush()" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);background:none;border:1px solid var(--border2);border-radius:4px;padding:3px 8px;cursor:pointer;-webkit-appearance:none;text-transform:uppercase;letter-spacing:.05em;display:none;">Push</button><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);" id="session-lbl">SUMI-16</div></div>
+  <div style="display:flex;gap:8px;align-items:center;"><button onclick="syncOrSetup()" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);background:none;border:1px solid var(--border2);border-radius:4px;padding:3px 8px;cursor:pointer;-webkit-appearance:none;text-transform:uppercase;letter-spacing:.05em;">Sync</button><button id="push-btn" onclick="copyPush()" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);background:none;border:1px solid var(--border2);border-radius:4px;padding:3px 8px;cursor:pointer;-webkit-appearance:none;text-transform:uppercase;letter-spacing:.05em;display:none;">Push</button><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);" id="session-lbl">SUMI-12</div></div>
 </div>
 
 <div class="clock-row">
@@ -316,15 +316,15 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
     <button class="habit-btn" id="h-setsched" onclick="toggleH('setsched')" style="border-top:2px solid #BA7517"><span class="habit-name">Set Sched</span><span class="habit-streak" id="hs-setsched">0d</span></button>
     <button class="habit-btn" id="h-3mits" onclick="toggleH('3mits')" style="border-top:2px solid #E06B3A"><span class="habit-name">3 MITs</span><span class="habit-streak" id="hs-3mits">0d</span></button>
     <button class="habit-btn" id="h-3tasks" onclick="toggleH('3tasks')" style="border-top:2px solid #5BA3A0"><span class="habit-name">3 Tasks</span><span class="habit-streak" id="hs-3tasks">0d</span></button>
-    <button class="habit-btn" id="h-work" onclick="toggleH('work')" style="border-top:2px solid #6B8FD4"><span class="habit-name">Work</span><span class="habit-streak" id="hs-work">0d</span></button>
-    <button class="habit-btn" id="h-study" onclick="toggleH('study')" style="border-top:2px solid #9B7FD4"><span class="habit-name">Study</span><span class="habit-streak" id="hs-study">0d</span></button>
-    <button class="habit-btn" id="h-create" onclick="toggleH('create')" style="border-top:2px solid #D85A30"><span class="habit-name">Create</span><span class="habit-streak" id="hs-create">0d</span></button>
-    <button class="habit-btn" id="h-chill" onclick="toggleH('chill')" style="border-top:2px solid #4BA3C3"><span class="habit-name">Chill</span><span class="habit-streak" id="hs-chill">0d</span></button>
-    <button class="habit-btn" id="h-selfcare" onclick="toggleH('selfcare')" style="border-top:2px solid #D4537E"><span class="habit-name">Self-care</span><span class="habit-streak" id="hs-selfcare">0d</span></button>
+    <button class="habit-btn" id="h-dbgroup" onclick="toggleH('dbgroup')" style="border-top:2px solid #7B61FF"><span class="habit-name">DB Group</span><span class="habit-streak" id="hs-dbgroup">0d</span></button>
+    <button class="habit-btn" id="h-1908x" onclick="toggleH('1908x')" style="border-top:2px solid #D4537E"><span class="habit-name">1908X</span><span class="habit-streak" id="hs-1908x">0d</span></button>
+    <button class="habit-btn" id="h-seenq" onclick="toggleH('seenq')" style="border-top:2px solid #0EA5E9"><span class="habit-name">SEENQ</span><span class="habit-streak" id="hs-seenq">0d</span></button>
+    <button class="habit-btn" id="h-metime" onclick="toggleH('metime')" style="border-top:2px solid #F59E0B"><span class="habit-name">Me Time</span><span class="habit-streak" id="hs-metime">0d</span></button>
+    <button class="habit-btn" id="h-selfcare" onclick="toggleH('selfcare')" style="border-top:2px solid #D4537E"><span class="habit-name">Self Care</span><span class="habit-streak" id="hs-selfcare">0d</span></button>
     <button class="habit-btn" id="h-rest" onclick="toggleH('rest')" style="border-top:2px solid #7F6FBF"><span class="habit-name">Rest</span><span class="habit-streak" id="hs-rest">0d</span></button>
   </div>
 
-  <div class="sh"><span><span class="sh-dot" style="background:var(--amber)"></span>90-Day Habit Heatmap</span></div>
+  <div class="sh"><span><span class="sh-dot" style="background:var(--amber)"></span>Habit Heatmap</span></div>
   <div class="card" style="padding:10px 12px 12px;">
     <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;">
       <div id="hm-pos-key" style="flex-shrink:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:2px;width:56px;height:42px;"></div>
@@ -342,12 +342,14 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 <div id="tab-arc" class="panel">
   <div class="sh"><span><span class="sh-dot" style="background:var(--blue)"></span>Active Priorities</span></div>
   <div class="card card-blue" style="margin-bottom:10px;">
-    <div class="priority-row"><span class="p-num">1</span><span class="p-proj">SEENQ</span><span class="p-task">ENQ-ENG MVP scoping session — Monday</span></div>
-    <div class="priority-row"><span class="p-num">2</span><span class="p-proj">SEENQ</span><span class="p-task">VS table finish — all rows</span></div>
-    <div class="priority-row"><span class="p-num">3</span><span class="p-proj">Dashboard</span><span class="p-task">Placeholder fix + Pomo tracker</span></div>
-    <div class="priority-row"><span class="p-num">4</span><span class="p-proj">SUMI-ARC</span><span class="p-task">Phase 4 scope definition session</span></div>
-    <div class="priority-row"><span class="p-num">5</span><span class="p-proj">1908X</span><span class="p-task">Cold scrub lead list build</span></div>
-    <div class="priority-row"><span class="p-num">6</span><span class="p-proj">Porkbun</span><span class="p-task">Renew or migrate — trigger Jun 15</span></div>
+    <div class="priority-row"><span class="p-num">1</span><span class="p-proj">SEENQ</span><span class="p-task">Privacy Policy v1 → counsel</span></div>
+    <div class="priority-row"><span class="p-num">2</span><span class="p-proj">SEENQ</span><span class="p-task">Anthropic API terms verification</span></div>
+    <div class="priority-row"><span class="p-num">3</span><span class="p-proj">SEENQ</span><span class="p-task">Signal Tracking Framework v1</span></div>
+    <div class="priority-row"><span class="p-num">4</span><span class="p-proj">SEENQ</span><span class="p-task">Concept Brief v2</span></div>
+    <div class="priority-row"><span class="p-num">5</span><span class="p-proj">SEENQ</span><span class="p-task">GTM spoke</span></div>
+    <div class="priority-row"><span class="p-num">6</span><span class="p-proj">Porkbun</span><span class="p-task">Renew or migrate — deadline Jun 18</span></div>
+    <div class="priority-row"><span class="p-num">7</span><span class="p-proj">GitHub</span><span class="p-task">Token regen</span></div>
+    <div class="priority-row"><span class="p-num">8</span><span class="p-proj">1908X</span><span class="p-task">Voicemail 424-234-9941</span></div>
   </div>
   <div class="card2">
     <div class="card card-amber">
@@ -359,18 +361,17 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
       <div class="st-row"><span class="sdot sl"></span>Site live<span class="sr">✓</span></div>
       <div class="st-row"><span class="sdot sl"></span>GA4 live<span class="sr">✓</span></div>
       <div class="st-row"><span class="sdot sl"></span>GBP<span class="sr">✓</span></div>
-      <div class="st-row"><span class="sdot sl"></span>Sumi email<span class="sr">✓</span></div>
+      <div class="st-row"><span class="sdot sl"></span>Privacy Policy<span class="sr">✓</span></div>
       <div class="st-row"><span class="sdot so"></span>DBA<span class="sr">open</span></div>
     </div>
   </div>
   <div class="sh"><span><span class="sh-dot" style="background:var(--purple)"></span>Lot — Open Items</span></div>
   <div class="card card-purple" style="margin-bottom:10px;">
-    <div class="lot-row"><span class="lot-nm">1908X</span><span class="lot-ct">3</span></div>
-    <div class="lot-row"><span class="lot-nm">SEENQ / ENQ-HQ</span><span class="lot-ct">10</span></div>
+    <div class="lot-row"><span class="lot-nm">SEENQ / ENQ-HQ</span><span class="lot-ct">7</span></div>
     <div class="lot-row"><span class="lot-nm">SUMI-ARC</span><span class="lot-ct">5</span></div>
-    <div class="lot-row"><span class="lot-nm">Dashboard</span><span class="lot-ct">2</span></div>
-    <div class="lot-row"><span class="lot-nm">Elgato / Tools</span><span class="lot-ct">4</span></div>
-    <div class="lot-row"><span class="lot-nm">Misc / Parked</span><span class="lot-ct">5</span></div>
+    <div class="lot-row"><span class="lot-nm">DASHBOARD</span><span class="lot-ct">3</span></div>
+    <div class="lot-row"><span class="lot-nm">1908X</span><span class="lot-ct">1</span></div>
+    <div class="lot-row"><span class="lot-nm">MISC</span><span class="lot-ct">10</span></div>
   </div>
   <div class="sh"><span><span class="sh-dot" style="background:var(--teal)"></span>Quick Links</span></div>
   <div class="links">
@@ -403,7 +404,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
       <div class="prog-item"><div class="pchk done">✓</div><span class="pt done-text">Voice Profile v1</span></div>
       <div class="prog-item"><div class="pchk done">✓</div><span class="pt done-text">Anti-AI Writing File v2</span></div>
       <div class="prog-item"><div class="pchk done">✓</div><span class="pt done-text">Identity File v1</span></div>
-      <div class="prog-item"><div class="pchk done">✓</div><span class="pt done-text">TRL — The Real Sumi Stand Up v15</span></div>
+      <div class="prog-item"><div class="pchk done">✓</div><span class="pt done-text">TRL v07 — The Real Layer</span></div>
     </div>
     <div class="prog-phase" style="border-top:1px solid var(--border);padding-top:12px;margin-bottom:0;">
       <div class="prog-phase-hd"><span class="prog-phase-nm">Phase 3 — Cowork Layer</span><span class="prog-pct" style="color:var(--green);">100%</span></div>
@@ -414,25 +415,16 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
       <div class="prog-item"><div class="pchk done">✓</div><span class="pt done-text">Dispatch paired — mobile to Mac</span></div>
       <div class="prog-item"><div class="pchk done">✓</div><span class="pt done-text">Scheduled tasks running</span></div>
     </div>
-    <div class="prog-phase" style="border-top:1px solid var(--border);padding-top:12px;margin-bottom:0;">
-      <div class="prog-phase-hd"><span class="prog-phase-nm">Phase 4 — Autonomous Ops</span><span class="prog-pct" style="color:var(--amber);">5%</span></div>
-      <div class="prog-track"><div class="prog-fill" style="width:5%;background:var(--amber);"></div></div>
-      <div class="prog-item"><div class="pchk done">✓</div><span class="pt done-text">Sumi Gmail + inbox live</span></div>
-      <div class="prog-item"><div class="pchk act">→</div><span class="pt">Sumi email identity — Workspace eval</span></div>
-      <div class="prog-item"><div class="pchk open"></div><span class="pt">SMS / Twilio layer</span></div>
-      <div class="prog-item"><div class="pchk open"></div><span class="pt">Cold scrub + outreach automation</span></div>
-      <div class="prog-item"><div class="pchk open"></div><span class="pt">Token budget without oversight</span></div>
-    </div>
   </div>
   <div class="sh"><span><span class="sh-dot" style="background:var(--blue)"></span>Venture Build Status</span></div>
   <div class="card card-blue">
-    <div class="venture-row"><span class="v-nm">1908X</span><div class="v-bar"><div class="v-fill" style="width:80%;background:var(--green);"></div></div><span class="v-stage">launched</span></div>
-    <div class="venture-row"><span class="v-nm">SEENQ</span><div class="v-bar"><div class="v-fill" style="width:35%;background:var(--blue);"></div></div><span class="v-stage">phase 0.1</span></div>
-    <div class="venture-row"><span class="v-nm">STILL-PROC</span><div class="v-bar"><div class="v-fill" style="width:50%;background:var(--pink);"></div></div><span class="v-stage">live</span></div>
-    <div class="venture-row"><span class="v-nm">AGENTIXx941</span><div class="v-bar"><div class="v-fill" style="width:90%;background:var(--amber);"></div></div><span class="v-stage">built</span></div>
-    <div class="venture-row"><span class="v-nm">xGC</span><div class="v-bar"><div class="v-fill" style="width:5%;background:var(--teal);"></div></div><span class="v-stage">front lot</span></div>
-    <div class="venture-row"><span class="v-nm">1020</span><div class="v-bar"><div class="v-fill" style="width:30%;background:var(--green);"></div></div><span class="v-stage">trial done</span></div>
+    <div class="venture-row"><span class="v-nm">1908X</span><div class="v-bar"><div class="v-fill" style="width:75%;background:var(--green);"></div></div><span class="v-stage">launched</span></div>
+    <div class="venture-row"><span class="v-nm">SEENQ</span><div class="v-bar"><div class="v-fill" style="width:25%;background:var(--blue);"></div></div><span class="v-stage">phase 0</span></div>
+    <div class="venture-row"><span class="v-nm">ADVOCATE</span><div class="v-bar"><div class="v-fill" style="width:10%;background:var(--purple);"></div></div><span class="v-stage">ideation</span></div>
+    <div class="venture-row"><span class="v-nm">1020</span><div class="v-bar"><div class="v-fill" style="width:30%;background:var(--green);"></div></div><span class="v-stage">trial live</span></div>
     <div class="venture-row"><span class="v-nm">RxHAB</span><div class="v-bar"><div class="v-fill" style="width:5%;background:var(--amber);"></div></div><span class="v-stage">parked</span></div>
+    <div class="venture-row"><span class="v-nm">STILL-PROC</span><div class="v-bar"><div class="v-fill" style="width:40%;background:var(--pink);"></div></div><span class="v-stage">live</span></div>
+    <div class="venture-row"><span class="v-nm">AGENTIXx941</span><div class="v-bar"><div class="v-fill" style="width:90%;background:var(--amber);"></div></div><span class="v-stage">built</span></div>
   </div>
 </div>
 
@@ -538,17 +530,22 @@ function buildForecast(d){
   var el=document.getElementById('wx-forecast');if(!el)return;
   el.innerHTML='';
   if(!d.daily||!d.daily.temperature_2m_max)return;
-  var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var dayNames=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var maxHi=Math.max.apply(null,d.daily.temperature_2m_max);
   var minLo=Math.min.apply(null,d.daily.temperature_2m_min);
   var range=maxHi-minLo||1;
+  var now=new Date();
+  var todayStr=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
   for(var i=0;i<d.daily.temperature_2m_max.length;i++){
-    var date=new Date(d.daily.time?d.daily.time[i]:Date.now());
+    var timeStr=d.daily.time?d.daily.time[i]:'';
+    var parts=timeStr.split('-');
+    var date=parts.length===3?new Date(parseInt(parts[0]),parseInt(parts[1])-1,parseInt(parts[2])):new Date();
     var hi=Math.round(d.daily.temperature_2m_max[i]);
     var lo=Math.round(d.daily.temperature_2m_min[i]);
     var row=document.createElement('div');row.className='wx-day-row';
-    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var dayLabel=i===0?'Today':days[date.getDay()]+' '+months[date.getMonth()]+' '+date.getDate();
+    var isToday=timeStr===todayStr;
+    var dayLabel=isToday?'Today':dayNames[date.getDay()]+' '+months[date.getMonth()]+' '+date.getDate();
     var nmEl=document.createElement('span');nmEl.className='wx-day-nm';nmEl.textContent=dayLabel;
     var icoEl=document.createElement('span');icoEl.className='wx-day-ico';icoEl.textContent=wxIcon(d.daily.weathercode?d.daily.weathercode[i]:0);
     var barWrap=document.createElement('div');barWrap.className='wx-day-bar';
@@ -733,18 +730,18 @@ function clearTasks(){
 
 // HABITS
 var hDefs=[
-  {k:'intake',label:'Intake',color:'#0D9488'},
-  {k:'gym',label:'Gym',color:'#639922'},
-  {k:'pomodoro',label:'Pomodoro',color:'#378ADD'},
+  {k:'intake',  label:'Intake',   color:'#0D9488'},
+  {k:'gym',     label:'Gym',      color:'#639922'},
+  {k:'pomodoro',label:'Pomodoro', color:'#378ADD'},
   {k:'setsched',label:'Set Sched',color:'#BA7517'},
-  {k:'3mits',label:'3 MITs',color:'#E06B3A'},
-  {k:'3tasks',label:'3 Tasks',color:'#5BA3A0'},
-  {k:'work',label:'Work',color:'#6B8FD4'},
-  {k:'study',label:'Study',color:'#9B7FD4'},
-  {k:'create',label:'Create',color:'#D85A30'},
-  {k:'chill',label:'Chill',color:'#4BA3C3'},
-  {k:'selfcare',label:'Self-care',color:'#D4537E'},
-  {k:'rest',label:'Rest',color:'#7F6FBF'}
+  {k:'3mits',   label:'3 MITs',   color:'#E06B3A'},
+  {k:'3tasks',  label:'3 Tasks',  color:'#5BA3A0'},
+  {k:'dbgroup', label:'DB Group', color:'#7B61FF'},
+  {k:'1908x',   label:'1908X',    color:'#D4537E'},
+  {k:'seenq',   label:'SEENQ',    color:'#0EA5E9'},
+  {k:'metime',  label:'Me Time',  color:'#F59E0B'},
+  {k:'selfcare',label:'Self Care',color:'#D4537E'},
+  {k:'rest',    label:'Rest',     color:'#7F6FBF'}
 ];
 var hColorMap={};
 hDefs.forEach(function(h){hColorMap[h.k]=h.color;});
@@ -776,14 +773,13 @@ function renderH(){
   });
 }
 
-// HEATMAP — 90-day combined grid, color-coded by habits done
+// HEATMAP — current month, Sun-Sat aligned, day 1 top-left, today outlined
 function buildHeatmap(){
   var grid=document.getElementById('hm-grid');
   var legend=document.getElementById('hm-legend');
   var posKey=document.getElementById('hm-pos-key');
   if(!grid)return;
 
-  // position key — 4x3 mini grid showing which dot = which habit
   if(posKey){
     posKey.innerHTML='';
     hDefs.forEach(function(h){
@@ -794,7 +790,6 @@ function buildHeatmap(){
     });
   }
 
-  // legend — color dot + label for each habit
   legend.innerHTML='';
   hDefs.forEach(function(h){
     var item=document.createElement('div');item.className='hm-leg-item';
@@ -804,55 +799,74 @@ function buildHeatmap(){
     legend.appendChild(item);
   });
 
-  // today = top-left (col 0), go forward 90 days right→down
-  var days=[];
-  var today=new Date();today.setHours(0,0,0,0);
-  for(var i=0;i<90;i++){
-    var d=new Date(today);d.setDate(today.getDate()+i);
-    days.push(d);
-  }
+  var now=new Date();now.setHours(0,0,0,0);
+  var y=now.getFullYear();
+  var m=now.getMonth();
+  var monthStart=new Date(y,m,1);
+  var daysInMonth=new Date(y,m+1,0).getDate();
+  var startDow=monthStart.getDay(); // 0=Sun
+  var totalCells=Math.ceil((startDow+daysInMonth)/7)*7;
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var dowLabels=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-  // pad end so last row completes the week
-  var numCols=13;
-  var totalCells=numCols*7;
-  grid.style.gridTemplateColumns='repeat('+numCols+',1fr)';
   grid.innerHTML='';
+  grid.style.cssText='display:block;';
 
-  days.forEach(function(d,i){
-    var key=dateKey(d);
-    var hab=JSON.parse(localStorage.getItem('hab_'+key)||'{}');
-    var cell=document.createElement('div');
-    cell.className='hm-cell';
-    cell.style.background='#1a1a1a';
-    cell.style.position='relative';
+  // month header
+  var hdr=document.createElement('div');
+  hdr.style.cssText='font-family:DM Mono,monospace;font-size:10px;color:#f0f0f0;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;';
+  hdr.textContent=months[m]+' '+y;
+  grid.appendChild(hdr);
 
-    var inner=document.createElement('div');
-    inner.style.cssText='position:absolute;top:8%;left:8%;width:84%;height:84%;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:1px;';
-    hDefs.forEach(function(h){
-      var dot=document.createElement('div');
-      dot.style.cssText='border-radius:1px;width:100%;height:100%;background:'+(hab[h.k]?h.color:'#2a2a2a')+';';
-      inner.appendChild(dot);
-    });
-    cell.appendChild(inner);
-
-    if(key===todayKey()){
-      cell.style.outline='1.5px solid #f0f0f0';
-      cell.style.outlineOffset='1px';
-    }
-    // future days slightly dimmer
-    if(d>today){
-      cell.style.opacity='0.35';
-    }
-    var doneLabels=hDefs.filter(function(h){return !!hab[h.k];}).map(function(h){return h.label;});
-    cell.title=d.toDateString()+(doneLabels.length?': '+doneLabels.join(', '):'');
-    grid.appendChild(cell);
+  // dow header
+  var dowRow=document.createElement('div');
+  dowRow.style.cssText='display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4px;';
+  dowLabels.forEach(function(dl){
+    var lbl=document.createElement('div');
+    lbl.style.cssText='font-family:DM Mono,monospace;font-size:8px;color:#444;text-align:center;text-transform:uppercase;';
+    lbl.textContent=dl;
+    dowRow.appendChild(lbl);
   });
+  grid.appendChild(dowRow);
 
-  // fill remaining cells to complete grid
-  var remaining=totalCells-90;
-  for(var r=0;r<remaining;r++){
-    var emp=document.createElement('div');emp.className='hm-cell';emp.style.background='transparent';
-    grid.appendChild(emp);
+  var row=null;
+  for(var cell=0;cell<totalCells;cell++){
+    if(cell%7===0){
+      row=document.createElement('div');
+      row.style.cssText='display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:3px;';
+      grid.appendChild(row);
+    }
+    var dayNum=cell-startDow+1;
+    if(dayNum<1||dayNum>daysInMonth){
+      var sp=document.createElement('div');sp.style.cssText='aspect-ratio:1;background:transparent;';
+      row.appendChild(sp);continue;
+    }
+    var day=new Date(y,m,dayNum);
+    var key=dateKey(day);
+    var isFuture=day>now;
+    var isToday=(key===todayKey());
+    var hab=isFuture?{}:JSON.parse(localStorage.getItem('hab_'+key)||'{}');
+    var c=document.createElement('div');
+    c.style.cssText='border-radius:2px;aspect-ratio:1;position:relative;cursor:pointer;background:'+(isFuture?'#111':'#1a1a1a')+';'+(isFuture?'opacity:0.3;':'');
+    if(!isFuture){
+      var inner=document.createElement('div');
+      inner.style.cssText='position:absolute;top:8%;left:8%;width:84%;height:84%;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:1px;';
+      hDefs.forEach(function(h){
+        var dot=document.createElement('div');
+        dot.style.cssText='border-radius:1px;width:100%;height:100%;background:'+(hab[h.k]?h.color:'#2a2a2a')+';';
+        inner.appendChild(dot);
+      });
+      c.appendChild(inner);
+    }
+    if(isToday){c.style.outline='1.5px solid #f0f0f0';c.style.outlineOffset='1px';}
+    var dnl=document.createElement('div');
+    dnl.style.cssText='position:absolute;bottom:2px;right:3px;font-family:DM Mono,monospace;font-size:7px;color:'+(isToday?'#f0f0f0':isFuture?'#333':'#444')+';line-height:1;';
+    dnl.textContent=dayNum;
+    c.appendChild(dnl);
+    var doneLabels=isFuture?[]:hDefs.filter(function(h){return !!hab[h.k];}).map(function(h){return h.label;});
+    c.title=day.toDateString()+(doneLabels.length?': '+doneLabels.join(', '):'');
+    if(!isFuture){(function(dk,dt){c.addEventListener('click',function(){openManualEntry(dk,dt);});})(key,day);}
+    row.appendChild(c);
   }
 }
 
@@ -917,7 +931,7 @@ function setDL(id,ds,warn){
 }
 
 function copyPush(){
-  var cmd="cd ~/Desktop/-/CLAUDE/DASH && cp sumi_arc_dashboard_v11.html index.html && git add sumi_arc_dashboard_v11.html index.html && git commit -m \"Arc Dashboard v11\" && git push";
+  var cmd="cd ~/Desktop/-/CLAUDE/DASH && cp ~/Desktop/DASH.html . && cp DASH.html index.html && git add DASH.html index.html && git commit -m \"Sumi ARC SUMI-12\" && git push origin main";
   if(navigator.standalone||/iPhone|iPad/.test(navigator.userAgent)){return;}
   navigator.clipboard.writeText(cmd).then(function(){
     var btn=document.querySelector('[onclick="copyPush()"]');
@@ -1210,16 +1224,66 @@ function syncOrSetup(){
   syncPull(true);
 }
 
-// INIT
+// MANUAL HABIT ENTRY
+function openManualEntry(dk,dt){
+  var modal=document.getElementById('manual-modal');
+  var title=document.getElementById('manual-title');
+  var grid=document.getElementById('manual-grid');
+  if(!modal)return;
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  title.textContent=days[dt.getDay()]+' '+months[dt.getMonth()]+' '+dt.getDate()+', '+dt.getFullYear();
+  modal.dataset.dk=dk;
+  var hab=JSON.parse(localStorage.getItem('hab_'+dk)||'{}');
+  grid.innerHTML='';
+  hDefs.forEach(function(h){
+    var btn=document.createElement('button');
+    btn.style.cssText='background:'+(hab[h.k]?h.color+'33':'var(--surface)')
+      +';border:1px solid '+(hab[h.k]?h.color:'var(--border)')
+      +';border-radius:10px;padding:8px 4px;cursor:pointer;text-align:center;-webkit-appearance:none;transition:all .15s;';
+    var nm=document.createElement('span');
+    nm.style.cssText='font-size:9px;font-family:DM Mono,monospace;text-transform:uppercase;letter-spacing:.05em;color:'+(hab[h.k]?'var(--text)':'var(--muted)')+';display:block;';
+    nm.textContent=h.label;
+    btn.appendChild(nm);
+    (function(key,color,b,label){
+      b.addEventListener('click',function(){
+        var d2=JSON.parse(localStorage.getItem('hab_'+dk)||'{}');
+        d2[key]=!d2[key];
+        localStorage.setItem('hab_'+dk,JSON.stringify(d2));
+        b.style.background=d2[key]?color+'33':'var(--surface)';
+        b.style.borderColor=d2[key]?color:'var(--border)';
+        label.style.color=d2[key]?'var(--text)':'var(--muted)';
+        syncPush();buildHeatmap();
+      });
+    })(h.k,h.color,btn,nm);
+    grid.appendChild(btn);
+  });
+  modal.style.display='flex';
+}
+function closeManualEntry(){
+  var modal=document.getElementById('manual-modal');
+  if(modal)modal.style.display='none';
+}
+
 if(!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)&&!navigator.standalone){var pb=document.getElementById("push-btn");if(pb)pb.style.display="block";}
 tick();setInterval(tick,1000);
 fetchWeather();setInterval(fetchWeather,600000);
 buildSched();renderMITs();renderTasks();renderH();buildWater();pomoDraw();
-setDL('dl-pk','2026-06-15',7);
+setDL('dl-pk','2026-06-18',14);
 buildHeatmap();
 genQuote(false);
 syncPull(true);
 setInterval(function(){syncPull(false);},SYNC_INT);
 </script>
+<!-- MANUAL HABIT ENTRY MODAL -->
+<div id="manual-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:99999;align-items:flex-end;justify-content:center;padding:0 14px calc(env(safe-area-inset-bottom,0px) + 16px);">
+  <div style="background:#111;border:1px solid #2a2a2a;border-radius:16px;padding:16px;width:100%;max-width:420px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div id="manual-title" style="font-family:'DM Mono',monospace;font-size:11px;color:#f0f0f0;text-transform:uppercase;letter-spacing:.08em;"></div>
+      <button onclick="closeManualEntry()" style="font-family:'DM Mono',monospace;font-size:9px;color:#777;background:none;border:1px solid #2a2a2a;border-radius:4px;padding:3px 8px;cursor:pointer;-webkit-appearance:none;text-transform:uppercase;">Done</button>
+    </div>
+    <div id="manual-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;"></div>
+  </div>
+</div>
 </body>
 </html>
